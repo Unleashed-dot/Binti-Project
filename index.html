@@ -187,6 +187,38 @@ header.scrolled{background:rgba(251,243,230,.9);backdrop-filter:blur(14px);box-s
 .kit-step h3{margin:8px 0 8px}
 .kit-step p{font-size:.99rem}
 .kit-cta{text-align:center;margin-top:50px}
+/* ---- 3D kit ---- */
+.kit3d{position:relative;height:660vh;margin-top:48px}
+.kit3d-sticky{position:sticky;top:0;height:100vh;overflow:hidden;border-radius:0}
+#kitCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:
+  radial-gradient(120% 90% at 50% 18%,#fff7ec 0%,var(--cream) 42%,var(--sand) 100%)}
+.kit3d-ui{position:absolute;inset:0;pointer-events:none;display:flex;align-items:flex-end;padding:clamp(20px,5vw,60px)}
+.kit3d-panel{max-width:430px;background:rgba(251,243,230,.82);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--shadow);transition:opacity .35s,transform .35s}
+.kit3d-panel.swap{opacity:0;transform:translateY(14px)}
+.kit3d-num{font-family:'Space Grotesk';font-weight:600;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rust)}
+.kit3d-num b{font-family:'Fraunces';font-size:1.1rem}
+.kit3d-panel h3{margin:6px 0 8px}
+.kit3d-panel p{font-size:.99rem;line-height:1.55}
+.kit3d-panel p i{font-style:italic;color:var(--rust)}
+.kit3d-dots{position:absolute;right:clamp(14px,3vw,38px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px}
+.kit3d-dots i{width:9px;height:9px;border-radius:50%;background:var(--clay);transition:.3s}
+.kit3d-dots i.on{background:var(--rust);transform:scale(1.45)}
+.kit3d-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;animation:bob 1.9s ease-in-out infinite;pointer-events:none}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+.kit-fallback{display:none;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.kit-fallback .fb{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow-sm)}
+.kit-fallback .fb .ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--rust),var(--ochre));display:grid;place-items:center;color:#fff;margin-bottom:14px}
+.kit-fallback .fb h4{font-family:'Fraunces';font-size:1.12rem;margin-bottom:6px}
+.kit-fallback .fb p{font-size:.93rem}
+.kit-fallback .fb p i{font-style:italic;color:var(--rust)}
+.kit3d.nowebgl{height:auto;margin-top:32px}
+.kit3d.nowebgl .kit3d-sticky{display:none}
+.kit3d.nowebgl .kit-fallback{display:grid}
+@media(max-width:720px){
+  .kit3d{height:560vh}
+  .kit3d-panel{max-width:none;width:100%}
+  .kit3d-dots{display:none}
+}
 
 /* ---------- Impact / Mama Lishe ---------- */
 .factcard{background:linear-gradient(160deg,var(--emerald),#1f5f43);color:#fff;border-radius:26px;padding:42px;box-shadow:var(--shadow);position:relative;overflow:hidden}
@@ -363,7 +395,7 @@ footer a:hover{color:var(--gold)}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow reveal in" data-i18n="hero_eyebrow">Menstrual hygiene · Tanzania</span>
-      <h1 class="reveal in d1" data-i18n="hero_title">Keeping girls in school, <span class="hl">with dignity.</span></h1>
+      <h1 class="reveal in d1" data-i18n="hero_title">Helping girls go to school — <span class="hl">with dignity.</span></h1>
       <p class="lead reveal in d2" data-i18n="hero_lead">Many girls from low-income families in Tanzania miss school every month simply because they lack menstrual products. The Binti Project changes that — with a reusable hygiene kit and education that lets girls manage their period safely, confidently and sustainably.</p>
       <div class="hero-cta reveal in d2">
         <a href="https://www.gofundme.com/f/empower-tanzanian-girls-with-binti-project" target="_blank" rel="noopener" class="btn btn-primary btn-lg magnetic" data-i18n="hero_cta1">Donate now</a>
@@ -446,13 +478,6 @@ footer a:hover{color:var(--gold)}
       <span class="eyebrow" style="justify-content:center" data-i18n="kit_eyebrow">Build a Binti Kit</span>
       <h2 data-i18n="kit_title">See what goes into one kit — piece by piece</h2>
       <p class="lead" data-i18n="kit_lead">Scroll down, or tap “Add next piece”. Each part is added with the reason it matters. When all seven are in place, you've built a complete Binti Kit.</p>
-      <div class="kit-progress-wrap">
-        <div class="beads" id="beads">
-          <i id="beadFill"></i>
-          <span class="bead" data-b="1"></span><span class="bead" data-b="2"></span><span class="bead" data-b="3"></span><span class="bead" data-b="4"></span><span class="bead" data-b="5"></span><span class="bead" data-b="6"></span><span class="bead" data-b="7"></span><span class="bead" data-b="8"></span>
-        </div>
-        <div class="kit-progress-label"><span id="kitCount">0</span> / 8 <span data-i18n="kit_added">pieces added</span></div>
-      </div>
     </div>
 
     <figure class="realkit-fig reveal">
@@ -460,34 +485,20 @@ footer a:hover{color:var(--gold)}
       <figcaption data-i18n="kit_realcap">A real Binti Kit with all its components, sewn in Tanzania.</figcaption>
     </figure>
 
-    <div class="kit-layout">
-      <div class="kit-stage-col">
-        <div class="kit-stage">
-          <div class="kit-tote">
-            <div class="kit-slot" data-slot="1"></div>
-            <div class="kit-slot" data-slot="2"></div>
-            <div class="kit-slot" data-slot="3"></div>
-            <div class="kit-slot" data-slot="4"></div>
-            <div class="kit-slot" data-slot="5"></div>
-            <div class="kit-slot" data-slot="6"></div>
-            <div class="kit-slot" data-slot="7"></div>
-            <div class="kit-slot" data-slot="8"></div>
-            <div class="kit-slot" style="visibility:hidden"></div>
-          </div>
-          <div class="kit-done-badge" id="kitDone">
-            <div>
-              <div class="check">✓</div>
-              <h3 data-i18n="kit_done_t">A complete Binti Kit!</h3>
-              <p data-i18n="kit_done_p">Seven simple parts — one girl kept in school, safely and with dignity.</p>
-            </div>
+    <div class="kit3d" id="kit3d">
+      <div class="kit3d-sticky">
+        <canvas id="kitCanvas"></canvas>
+        <div class="kit3d-ui">
+          <div class="kit3d-panel" id="kit3dPanel">
+            <span class="kit3d-num"><b id="k3num">1</b> / 7</span>
+            <h3 id="k3title">—</h3>
+            <p id="k3desc">—</p>
           </div>
         </div>
-        <div style="text-align:center;margin-top:20px">
-          <button class="btn btn-gold" id="kitNext" data-i18n="kit_next">Add next piece +</button>
-        </div>
+        <div class="kit3d-dots" id="kit3dDots"></div>
+        <div class="kit3d-hint" id="kit3dHint" data-i18n="kit3d_hint">Scroll to explore</div>
       </div>
-
-      <div class="kit-steps" id="kitSteps"></div>
+      <div class="kit-fallback" id="kitFallback"></div>
     </div>
 
     <div class="kit-cta reveal">
@@ -707,7 +718,7 @@ const I18N = {
   en:{
     nav_problem:"The challenge",nav_kit:"The Binti Kit",nav_impact:"Impact",nav_about:"About",nav_faq:"FAQ",nav_contact:"Contact",nav_donate:"Donate",
     hero_eyebrow:"Menstrual hygiene · Tanzania",
-    hero_title:'Keeping girls in school, <span class="hl">with dignity.</span>',
+    hero_title:'Helping girls go to school — <span class="hl">with dignity.</span>',
     hero_lead:"Many girls from low-income families in Tanzania miss school every month simply because they lack menstrual products. The Binti Project changes that — with a reusable hygiene kit and education that lets girls manage their period safely, confidently and sustainably.",
     hero_cta1:"Donate now",hero_cta2:"See what's in a kit",
     hero_chip1:"one kit lasts",hero_chip2:"school days saved every month",hero_chip3:"reusable pads in every kit",u_years:" yrs",
@@ -726,9 +737,9 @@ const I18N = {
     ch3_b:"Nothing available.",ch3_t:"In rural areas especially, affordable hygiene products are almost impossible to find.",
     ch4_b:"Disposables don't work.",ch4_t:"Single-use pads are no sustainable solution for poor families — and harm the environment when not disposed of properly.",
     kit_eyebrow:"Build a Binti Kit",kit_title:"See what goes into one kit — piece by piece",
-    kit_lead:"Scroll down, or tap “Add next piece”. Each part is added with the reason it matters. When all eight are in place, you've built a complete Binti Kit.",
-    kit_added:"pieces added",kit_next:"Add next piece +",
-    kit_done_t:"A complete Binti Kit!",kit_done_p:"Eight simple parts — one girl kept in school, safely and with dignity.",
+    kit_lead:"Scroll through the kit — each part turns in real 3D, with the reason it matters. Seven pieces; one girl kept in school.",
+    kit_added:"pieces added",kit_next:"Add next piece +",kit3d_hint:"Scroll to explore",
+    kit_done_t:"A complete Binti Kit!",kit_done_p:"Seven simple parts — one girl kept in school, safely and with dignity.",
     kit_cta_lead:"One kit, sewn by local seamstresses, keeps a girl learning for up to two years.",kit_cta_btn:"Fund a Binti Kit",kit_realcap:"A real Binti Kit with all its components, sewn in Tanzania.",
     imp_eyebrow:"Our impact",imp_title:"Measurable change, girl by girl",
     imp_lead:"A 2015 report by the Tanzania Water and Sanitation Network (TAWASANET) found that most schoolgirls miss one to three days of lessons every month — largely because of inadequate sanitation facilities.",
@@ -759,7 +770,7 @@ const I18N = {
   de:{
     nav_problem:"Die Herausforderung",nav_kit:"Das Binti-Set",nav_impact:"Wirkung",nav_about:"Über uns",nav_faq:"FAQ",nav_contact:"Kontakt",nav_donate:"Spenden",
     hero_eyebrow:"Menstruationshygiene · Tansania",
-    hero_title:'Mädchen in der Schule halten – <span class="hl">mit Würde.</span>',
+    hero_title:'Mädchen die Schule ermöglichen – <span class="hl">mit Würde.</span>',
     hero_lead:"Viele Mädchen aus einkommensschwachen Familien in Tansania verpassen jeden Monat Schultage, weil ihnen Menstruationsprodukte fehlen. Das Binti-Projekt ändert das – mit einem wiederverwendbaren Hygiene-Set und Aufklärung, damit Mädchen ihre Periode sicher, selbstbewusst und nachhaltig managen können.",
     hero_cta1:"Jetzt spenden",hero_cta2:"Was ist im Set?",
     hero_chip1:"hält ein Set",hero_chip2:"gerettete Schultage pro Monat",hero_chip3:"Binden pro Set",u_years:" Jahre",
@@ -778,9 +789,9 @@ const I18N = {
     ch3_b:"Nichts verfügbar.",ch3_t:"Besonders in ländlichen Gebieten sind erschwingliche Hygieneprodukte kaum erhältlich.",
     ch4_b:"Einweg funktioniert nicht.",ch4_t:"Einweg-Binden sind für arme Familien keine nachhaltige Lösung – und belasten die Umwelt, wenn sie nicht fachgerecht entsorgt werden.",
     kit_eyebrow:"Ein Binti-Set zusammenstellen",kit_title:"Sieh, was in ein Set gehört – Stück für Stück",
-    kit_lead:"Scrolle nach unten oder tippe auf „Nächstes Teil hinzufügen“. Jedes Teil kommt mit der Erklärung, warum es wichtig ist. Sind alle acht zusammen, hast du ein vollständiges Binti-Set gebaut.",
-    kit_added:"Teile hinzugefügt",kit_next:"Nächstes Teil hinzufügen +",
-    kit_done_t:"Ein vollständiges Binti-Set!",kit_done_p:"Acht einfache Teile – ein Mädchen bleibt in der Schule, sicher und mit Würde.",
+    kit_lead:"Scroll durch das Set – jedes Teil dreht sich in echtem 3D, mit dem Grund, warum es zählt. Sieben Teile; ein Mädchen bleibt in der Schule.",
+    kit_added:"Teile hinzugefügt",kit_next:"Nächstes Teil hinzufügen +",kit3d_hint:"Zum Erkunden scrollen",
+    kit_done_t:"Ein vollständiges Binti-Set!",kit_done_p:"Sieben einfache Teile – ein Mädchen bleibt in der Schule, sicher und mit Würde.",
     kit_cta_lead:"Ein Set, von lokalen Näherinnen gefertigt, hält ein Mädchen bis zu zwei Jahre im Unterricht.",kit_cta_btn:"Ein Binti-Set finanzieren",kit_realcap:"Ein echtes Binti-Kit mit allen Bestandteilen, genäht in Tansania.",
     imp_eyebrow:"Unsere Wirkung",imp_title:"Messbare Veränderung, Mädchen für Mädchen",
     imp_lead:"Ein Bericht des Tanzania Water and Sanitation Network (TAWASANET) von 2015 belegt, dass die meisten Schulmädchen monatlich ein bis drei Unterrichtstage verpassen – vor allem wegen unzureichender sanitärer Einrichtungen.",
@@ -811,7 +822,7 @@ const I18N = {
   sw:{
     nav_problem:"Changamoto",nav_kit:"Kifurushi cha Binti",nav_impact:"Athari",nav_about:"Kuhusu",nav_faq:"Maswali",nav_contact:"Mawasiliano",nav_donate:"Changia",
     hero_eyebrow:"Usafi wa hedhi · Tanzania",
-    hero_title:'Kuwaweka wasichana shuleni, <span class="hl">kwa heshima.</span>',
+    hero_title:'Kuwawezesha wasichana kwenda shule — <span class="hl">kwa heshima.</span>',
     hero_lead:"Wasichana wengi kutoka familia za kipato cha chini nchini Tanzania hukosa masomo kila mwezi kwa sababu tu hawana bidhaa za hedhi. Mradi wa Binti unabadilisha hilo — kwa kifurushi cha usafi kinachotumika tena na elimu inayowawezesha wasichana kusimamia hedhi yao kwa usalama, kujiamini na kwa njia endelevu.",
     hero_cta1:"Changia sasa",hero_cta2:"Ona kilichomo kwenye kifurushi",
     hero_chip1:"kifurushi kimoja hudumu",hero_chip2:"siku za shule zinazookolewa kila mwezi",hero_chip3:"pedi za kutumika tena kila kifurushi",u_years:" miaka",
@@ -830,9 +841,9 @@ const I18N = {
     ch3_b:"Hakuna kinachopatikana.",ch3_t:"Hasa vijijini, bidhaa za usafi za bei nafuu ni vigumu sana kupatikana.",
     ch4_b:"Za matumizi moja hazifai.",ch4_t:"Taulo za matumizi moja si suluhisho endelevu kwa familia maskini — na huharibu mazingira zisipotupwa ipasavyo.",
     kit_eyebrow:"Tengeneza Kifurushi cha Binti",kit_title:"Ona kinachoingia kwenye kifurushi kimoja — kipande kwa kipande",
-    kit_lead:"Teremsha chini, au gusa “Ongeza kipande”. Kila kipande huongezwa pamoja na sababu ya umuhimu wake. Vipande vyote vinane vikiwa tayari, umetengeneza Kifurushi kamili cha Binti.",
-    kit_added:"vipande vimeongezwa",kit_next:"Ongeza kipande +",
-    kit_done_t:"Kifurushi kamili cha Binti!",kit_done_p:"Vipande nane rahisi — msichana mmoja anabaki shuleni, kwa usalama na heshima.",
+    kit_lead:"Teremsha kupitia kifurushi — kila kipande huzunguka katika 3D halisi, pamoja na sababu ya umuhimu wake. Vipande saba; msichana mmoja anabaki shuleni.",
+    kit_added:"vipande vimeongezwa",kit_next:"Ongeza kipande +",kit3d_hint:"Teremsha kuchunguza",
+    kit_done_t:"Kifurushi kamili cha Binti!",kit_done_p:"Vipande saba rahisi — msichana mmoja anabaki shuleni, kwa usalama na heshima.",
     kit_cta_lead:"Kifurushi kimoja, kilichoshonwa na washonaji wa ndani, humweka msichana masomoni hadi miaka miwili.",kit_cta_btn:"Fadhili Kifurushi cha Binti",kit_realcap:"Kifurushi halisi cha Binti chenye vitu vyote, kilichoshonwa Tanzania.",
     imp_eyebrow:"Athari yetu",imp_title:"Mabadiliko yanayopimika, msichana kwa msichana",
     imp_lead:"Ripoti ya mwaka 2015 ya Tanzania Water and Sanitation Network (TAWASANET) ilibaini kuwa wasichana wengi wa shule hukosa siku moja hadi tatu za masomo kila mwezi — hasa kutokana na vyoo duni.",
@@ -876,33 +887,30 @@ const ICONS = {
 const KIT = {
   en:[
     {ic:'pads',t:"Five reusable pads",p:"The core of the kit (Kiswahili: <i>pedi</i>). Soft, absorbent and washable, five pads last up to two years — replacing hundreds of disposables a family could never afford."},
-    {ic:'clutch',t:"A small clutch bag",p:"<i>Pochi</i> — a slim pouch that holds the five clean pads, discreet enough to slip into a school bag."},
-    {ic:'panties',t:"Two pairs of underwear",p:"<i>Chupi mbili</i>. Many girls own none; these hold the pads securely and add comfort and confidence."},
-    {ic:'waterbig',t:"A large waterproof bag",p:"<i>Mfuko wa kuzuia maji</i>. Stores a used pad safely and odour-free until she gets home — no bin needed at school."},
-    {ic:'soap',t:"Soap & soap bag",p:"Antibacterial soap in its own small waterproof bag (<i>sabuni</i>), for washing hands after every change."},
-    {ic:'net',t:"A drying net",p:"<i>Wavu wa kuanika</i>. Lets her hang and dry the washed pads hygienically between uses."},
+    {ic:'clutch',t:"A small clutch bag",p:"<i>Pochi</i> — a slim pouch that holds up to five clean pads, discreet enough to slip into a school bag."},
+    {ic:'waterbig',t:"A large waterproof bag",p:"<i>Mfuko wa kuzuia maji</i>. Stores a used pad safely and odour-free during the school day — no bin needed at school."},
+    {ic:'soap',t:"A small waterproof bag with soap",p:"A small waterproof pouch holding antibacterial soap (<i>sabuni</i>), for cleaning her hands after every change."},
+    {ic:'panties',t:"Two pairs of underwear",p:"<i>Chupi mbili</i>. Designed to be worn with the pads — adding comfort, security and confidence."},
     {ic:'guide',t:"Instructions & a menstrual calendar",p:"<i>Karatasi ya maelekezo</i>. Shows how to use and care for the kit, and helps her track her cycle so her period never surprises her."},
-    {ic:'bag',t:"A large drawstring bag",p:"<i>Begi la kamba</i>. The all-in-one carrier that holds every item together — packed last, ready for the walk to school."}
+    {ic:'bag',t:"A large drawstring bag",p:"<i>Begi la kamba</i>. The all-in-one carrier that keeps every item together, neatly and discreetly."}
   ],
   de:[
     {ic:'pads',t:"Fünf wiederverwendbare Binden",p:"Das Herzstück des Sets (Suaheli: <i>pedi</i>). Weich, saugfähig und waschbar – fünf Binden halten bis zu zwei Jahre und ersetzen Hunderte Einwegbinden, die sich eine Familie nie leisten könnte."},
-    {ic:'clutch',t:"Eine kleine Clutch",p:"<i>Pochi</i> – eine schmale Tasche für die fünf sauberen Binden, diskret genug für die Schultasche."},
-    {ic:'panties',t:"Zwei Unterhosen",p:"<i>Chupi mbili</i>. Viele Mädchen besitzen keine; sie halten die Binden sicher und geben Komfort und Selbstvertrauen."},
-    {ic:'waterbig',t:"Eine große wasserfeste Tasche",p:"<i>Mfuko wa kuzuia maji</i>. Verstaut eine benutzte Binde sicher und geruchsfrei bis nach Hause – kein Mülleimer in der Schule nötig."},
-    {ic:'soap',t:"Seife & Seifentäschchen",p:"Antibakterielle Seife in einer kleinen wasserfesten Tasche (<i>sabuni</i>), zum Händewaschen nach jedem Wechsel."},
-    {ic:'net',t:"Ein Trocknungsnetz",p:"<i>Wavu wa kuanika</i>. Zum hygienischen Aufhängen und Trocknen der gewaschenen Binden zwischen den Nutzungen."},
+    {ic:'clutch',t:"Eine kleine Clutch",p:"<i>Pochi</i> – eine schmale Tasche für bis zu fünf saubere Binden, diskret genug für die Schultasche."},
+    {ic:'waterbig',t:"Eine große wasserfeste Tasche",p:"<i>Mfuko wa kuzuia maji</i>. Verstaut eine benutzte Binde während der Schulzeit sicher und geruchsfrei – kein Mülleimer in der Schule nötig."},
+    {ic:'soap',t:"Eine kleine wasserfeste Tasche mit Seife",p:"Eine kleine wasserfeste Tasche mit antibakterieller Seife (<i>sabuni</i>), zur Reinigung der Hände nach jedem Wechsel."},
+    {ic:'panties',t:"Zwei Unterhosen",p:"<i>Chupi mbili</i>. Zum Tragen mit den Binden – für Komfort, Sicherheit und Selbstvertrauen."},
     {ic:'guide',t:"Anleitung & Menstruationskalender",p:"<i>Karatasi ya maelekezo</i>. Erklärt Nutzung und Pflege des Sets und hilft, den Zyklus zu verfolgen, damit die Periode nie überrascht."},
-    {ic:'bag',t:"Eine große Stofftasche mit Zugband",p:"<i>Begi la kamba</i>. Der All-in-one-Beutel, der alles zusammenhält – zuletzt gepackt, fertig für den Schulweg."}
+    {ic:'bag',t:"Eine große Stofftasche mit Zugband",p:"<i>Begi la kamba</i>. Der All-in-one-Beutel, in dem alle Bestandteile ordentlich und diskret zusammenbleiben."}
   ],
   sw:[
     {ic:'pads',t:"Pedi tano za kutumika tena",p:"Kiini cha kifurushi. Laini, hufyonza vizuri na huoshwa — pedi tano hudumu hadi miaka miwili, zikichukua nafasi ya mamia ya taulo za matumizi moja ambazo familia isingeweza kununua."},
-    {ic:'clutch',t:"Pochi ndogo",p:"Hubeba pedi tano safi; nyembamba ya kutosha kuingia kwenye mkoba wa shule kwa faragha."},
-    {ic:'panties',t:"Chupi mbili",p:"Wasichana wengi hawana hata moja; hizi hushikilia pedi kwa uthabiti na kuongeza faraja na kujiamini."},
-    {ic:'waterbig',t:"Mfuko mkubwa usiopitisha maji",p:"Huhifadhi pedi iliyotumika kwa usalama na bila harufu hadi afike nyumbani — hakuna haja ya pipa shuleni."},
-    {ic:'soap',t:"Sabuni na mkoba wake",p:"Sabuni ya kuua bakteria ndani ya mfuko mdogo usiopitisha maji, kwa kunawa mikono baada ya kila kubadilisha."},
-    {ic:'net',t:"Wavu wa kuanika",p:"Humwezesha kuanika na kukausha pedi zilizooshwa kwa usafi kati ya matumizi."},
+    {ic:'clutch',t:"Pochi ndogo",p:"Hubeba hadi pedi tano safi; nyembamba ya kutosha kuingia kwenye mkoba wa shule kwa faragha."},
+    {ic:'waterbig',t:"Mfuko mkubwa usiopitisha maji",p:"Huhifadhi pedi iliyotumika kwa usalama na bila harufu wakati wa shule — hakuna haja ya pipa shuleni."},
+    {ic:'soap',t:"Mfuko mdogo usiopitisha maji wenye sabuni",p:"Mfuko mdogo usiopitisha maji wenye sabuni ya kuua bakteria, kwa kusafisha mikono baada ya kila kubadilisha."},
+    {ic:'panties',t:"Chupi mbili",p:"<i>Chupi mbili</i>. Zimeundwa kuvaliwa pamoja na pedi — kuongeza faraja, usalama na kujiamini."},
     {ic:'guide',t:"Maelekezo na kalenda ya hedhi",p:"Karatasi ya maelekezo. Hueleza jinsi ya kutumia na kutunza kifurushi, na humsaidia kufuatilia mzunguko wake ili hedhi isimshtukize."},
-    {ic:'bag',t:"Begi kubwa la kamba",p:"Begi linalobeba vitu vyote pamoja — hupakiwa mwisho, tayari kwa safari ya shule."}
+    {ic:'bag',t:"Begi kubwa la kamba",p:"Begi linalobeba vitu vyote pamoja, kwa uangalifu na faragha."}
   ]
 };
 
@@ -972,40 +980,13 @@ function applyLang(lang){
     if(I18N[lang]&&I18N[lang][k]!==undefined) el.innerHTML=I18N[lang][k];
   });
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-  renderKit(lang); renderFaq(lang);
+  renderFaq(lang);
+  window.__lang=lang;
+  if(window.updateKit3D) window.updateKit3D(lang);
 }
 
-function renderKit(lang){
-  const wrap=document.getElementById('kitSteps'); wrap.innerHTML='';
-  KIT[lang].forEach((item,i)=>{
-    const step=document.createElement('div');
-    step.className='kit-step'+(i<kitRevealed?' active':'');
-    step.dataset.step=i+1;
-    step.innerHTML=`<span class="num">${i+1}</span><h3>${item.t}</h3><p>${item.p}</p>`;
-    wrap.appendChild(step);
-  });
-  for(let n=1;n<=kitRevealed;n++) fillSlot(n);
-  observeKitSteps();
-}
-function fillSlot(n){
-  const slot=document.querySelector('.kit-slot[data-slot="'+n+'"]'); if(!slot)return;
-  slot.innerHTML=ICONS[KIT[currentLang][n-1].ic];
-  slot.classList.add('filled','c'+n);
-}
-function revealPiece(n){
-  if(n<=kitRevealed)return;
-  kitRevealed=n;
-  for(let i=1;i<=n;i++) fillSlot(i);
-  document.querySelectorAll('.kit-step').forEach(s=>{ if(+s.dataset.step<=n) s.classList.add('active'); });
-  document.querySelectorAll('.bead').forEach(b=>b.classList.toggle('on',+b.dataset.b<=n));
-  document.getElementById('beadFill').style.width=(90*(n-1)/7)+'%';
-  document.getElementById('kitCount').textContent=n;
-  document.getElementById('kitDone').classList.toggle('show',n>=8);
-}
-document.getElementById('kitNext').addEventListener('click',()=>{
-  const next=Math.min(kitRevealed+1,8); revealPiece(next);
-  if(next<=7){ const el=document.querySelector('.kit-step[data-step="'+next+'"]'); el&&el.scrollIntoView({behavior:'smooth',block:'center'}); }
-});
+/* expose kit data to the 3D module */
+window.KIT=KIT;
 
 function renderFaq(lang){
   const list=document.getElementById('faqList'); list.innerHTML='';
@@ -1048,9 +1029,6 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 const io=new IntersectionObserver((en)=>en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* Kit scroll-driven reveal */
-const kitIO=new IntersectionObserver((en)=>en.forEach(e=>{if(e.isIntersecting)revealPiece(+e.target.dataset.step);}),{threshold:.55});
-function observeKitSteps(){document.querySelectorAll('.kit-step').forEach(s=>kitIO.observe(s));}
 
 /* Animated counters */
 function animateCount(el){
@@ -1086,6 +1064,118 @@ document.getElementById('year').textContent=new Date().getFullYear();
 
 /* Init */
 applyLang('de');
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+(function(){
+  const host=document.getElementById('kit3d'); if(!host) return;
+  const canvas=document.getElementById('kitCanvas');
+  let lang=window.__lang||'de';
+  const N=7, ORDER=['pads','clutch','waterbig','soap','panties','guide','bag'];
+
+  let renderer=null;
+  try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ renderer=null; }
+  if(!renderer || !renderer.getContext()){ buildFallback(); return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setClearColor(0x000000,0);
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(38,1,0.1,100);
+  camera.position.set(0,0.35,4.7); camera.lookAt(0,0,0);
+  scene.add(new THREE.HemisphereLight(0xffffff,0xd8c3a0,1.05));
+  const key=new THREE.DirectionalLight(0xfff2df,1.5); key.position.set(3,5,4); scene.add(key);
+  const rim=new THREE.DirectionalLight(0xE9A33B,0.55); rim.position.set(-4,2,-3); scene.add(rim);
+
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(3.2,3.2),new THREE.MeshBasicMaterial({map:makeRadialTex(),transparent:true,opacity:0.32,depthWrite:false}));
+  shadow.rotation.x=-Math.PI/2; shadow.position.y=-1.1; scene.add(shadow);
+
+  const kanga=makeKangaTex();
+  const C={rose:0xE7A6BC,rust:0xB5462A,ochre:0xE9A33B,gold:0xF0B429,indigo:0x1c4a5c,emerald:0x2E7D5B,sand:0xEAD7BC,cream:0xF7EDDD,ink:0x2A1B12,softyellow:0xF3E7C0,white:0xFBF3E6};
+  function mat(color,o){ return new THREE.MeshStandardMaterial(Object.assign({color,roughness:0.72,metalness:0.02,transparent:true,opacity:0},o||{})); }
+  function fabricMat(){ return new THREE.MeshStandardMaterial({map:kanga,roughness:0.85,metalness:0,transparent:true,opacity:0,side:THREE.DoubleSide}); }
+
+  const builders={pads:buildPads,clutch:buildClutch,waterbig:buildWaterBig,soap:buildSoap,panties:buildPanties,guide:buildGuide,bag:buildBag};
+  const models=ORDER.map((ic,i)=>{
+    const g=builders[ic](); g.userData.mats=[];
+    g.traverse(o=>{ if(o.material){ (Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{m.transparent=true;m.opacity=0;g.userData.mats.push(m);}); }});
+    g.userData.s=0; g.userData.base=g.userData.base||1; g.scale.setScalar(0.001); g.visible=false; scene.add(g); return g;
+  });
+
+  let current=0; const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function resize(){ const w=host.clientWidth,h=window.innerHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+  window.addEventListener('resize',resize); resize();
+  function onScroll(){ const r=host.getBoundingClientRect(),vh=window.innerHeight,total=r.height-vh; let p=total>0?(-r.top)/total:0; p=Math.min(Math.max(p,0),1); let idx=Math.floor(p*N); if(idx>N-1)idx=N-1; if(idx<0)idx=0; if(idx!==current){current=idx;updatePanel();} }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  function animate(){ requestAnimationFrame(animate);
+    for(let i=0;i<models.length;i++){ const g=models[i],t=i===current?1:0; g.userData.s+=(t-g.userData.s)*0.12; const s=g.userData.s; g.visible=s>0.008; g.scale.setScalar(Math.max(0.001,s)*g.userData.base); for(const m of g.userData.mats)m.opacity=Math.min(1,s); if(i===current)g.rotation.y+=reduced?0:0.006; }
+    renderer.render(scene,camera); }
+  animate();
+
+  const dotsWrap=document.getElementById('kit3dDots'); for(let i=0;i<N;i++)dotsWrap.appendChild(document.createElement('i'));
+  const panel=document.getElementById('kit3dPanel');
+  function updatePanel(){ const data=(window.KIT&&(window.KIT[lang]||window.KIT.de))||[]; const item=data[current]; if(!item)return;
+    panel.classList.add('swap');
+    setTimeout(()=>{ document.getElementById('k3num').textContent=current+1; document.getElementById('k3title').textContent=item.t; document.getElementById('k3desc').innerHTML=item.p; panel.classList.remove('swap'); },150);
+    [...dotsWrap.children].forEach((d,i)=>d.classList.toggle('on',i===current));
+    const hint=document.getElementById('kit3dHint'); if(hint)hint.style.opacity=current>=N-1?0:0.85;
+  }
+  updatePanel(); onScroll();
+  window.updateKit3D=function(l){ lang=l; updatePanel(); };
+
+  function buildPads(){ const g=new THREE.Group(),base=mat(C.rose,{roughness:0.6});
+    for(let i=0;i<5;i++){ const p=new THREE.Mesh(new THREE.CapsuleGeometry(0.34,0.72,6,18),base.clone()); p.rotation.z=Math.PI/2; p.scale.set(1,1,0.16); p.position.set((i-2)*0.02,(i-2)*0.12,0); p.rotation.y=(i-2)*0.09; g.add(p); }
+    g.userData.base=1.0; return g; }
+  function buildClutch(){ const g=new THREE.Group();
+    const body=new THREE.Mesh(new THREE.BoxGeometry(1.5,0.95,0.34),fabricMat());
+    const flap=new THREE.Mesh(new THREE.BoxGeometry(1.52,0.42,0.36),fabricMat()); flap.position.set(0,0.32,0.01);
+    const btn=new THREE.Mesh(new THREE.CylinderGeometry(0.08,0.08,0.06,16),mat(C.ink,{roughness:0.4})); btn.rotation.x=Math.PI/2; btn.position.set(0,0.16,0.2);
+    g.add(body,flap,btn); g.userData.base=0.95; return g; }
+  function buildWaterBig(){ const g=new THREE.Group();
+    const body=new THREE.Mesh(new THREE.BoxGeometry(1.7,1.15,0.42),mat(C.indigo,{roughness:0.32,metalness:0.06}));
+    const zip=new THREE.Mesh(new THREE.BoxGeometry(1.5,0.08,0.06),mat(C.gold,{roughness:0.4,metalness:0.3})); zip.position.set(0,0.5,0.22);
+    const pull=new THREE.Mesh(new THREE.BoxGeometry(0.1,0.18,0.05),mat(C.gold,{metalness:0.4,roughness:0.35})); pull.position.set(0.6,0.42,0.24);
+    g.add(body,zip,pull); g.userData.base=0.9; return g; }
+  function buildSoap(){ const g=new THREE.Group();
+    const pouch=new THREE.Mesh(new THREE.BoxGeometry(1.1,0.8,0.32),mat(C.emerald,{roughness:0.35,metalness:0.05})); pouch.position.set(-0.28,0,0);
+    const soap=new THREE.Mesh(new THREE.BoxGeometry(0.62,0.26,0.42),mat(C.cream,{roughness:0.5})); soap.position.set(0.55,-0.12,0.06); soap.rotation.z=0.1;
+    g.add(pouch,soap); g.userData.base=1.0; return g; }
+  function buildPanties(){ const g=new THREE.Group(),col=[C.softyellow,C.white];
+    for(let i=0;i<2;i++){ const f=new THREE.Mesh(new THREE.CapsuleGeometry(0.5,0.55,6,16),mat(col[i],{roughness:0.85})); f.rotation.z=Math.PI/2; f.scale.set(1,1,0.3); f.position.set(0,(i-0.5)*0.44,0); f.rotation.y=(i-0.5)*0.28; g.add(f); }
+    g.userData.base=1.0; return g; }
+  function buildGuide(){ const g=new THREE.Group();
+    const left=new THREE.Mesh(new THREE.BoxGeometry(0.95,0.06,1.25),mat(C.rust,{roughness:0.6})); left.position.set(-0.5,0,0); left.rotation.z=0.3;
+    const right=new THREE.Mesh(new THREE.BoxGeometry(0.95,0.06,1.25),mat(C.rust,{roughness:0.6})); right.position.set(0.5,0,0); right.rotation.z=-0.3;
+    const pageL=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.03,1.15),mat(C.white,{roughness:0.9})); pageL.position.set(-0.5,0.06,0); pageL.rotation.z=0.3;
+    const pageR=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.03,1.15),new THREE.MeshStandardMaterial({map:makeCalendarTex(),roughness:0.9,transparent:true,opacity:0})); pageR.position.set(0.5,0.06,0); pageR.rotation.z=-0.3;
+    g.add(left,right,pageL,pageR); g.rotation.x=-0.18; g.userData.base=1.15; return g; }
+  function buildBag(){ const g=new THREE.Group();
+    const body=new THREE.Mesh(new THREE.SphereGeometry(0.95,32,24),fabricMat()); body.scale.set(1,1.05,1); body.position.y=-0.12;
+    const neck=new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.52,0.5,24,1,true),fabricMat()); neck.position.y=0.82;
+    const str=new THREE.Mesh(new THREE.TorusGeometry(0.36,0.05,12,32),mat(C.ink,{roughness:0.5})); str.rotation.x=Math.PI/2; str.position.y=0.9;
+    g.add(body,neck,str); g.userData.base=0.95; return g; }
+
+  function makeKangaTex(){ const c=document.createElement('canvas'); c.width=c.height=128; const x=c.getContext('2d');
+    x.fillStyle='#B5462A'; x.fillRect(0,0,128,128); const cols=['#E9A33B','#173C4B','#2E7D5B','#F0B429'];
+    for(let r=0;r<4;r++)for(let i=0;i<4;i++){ x.fillStyle=cols[(i+r)%cols.length]; const bx=i*32,by=r*32; x.beginPath(); x.moveTo(bx,by+32); x.lineTo(bx+16,by+6); x.lineTo(bx+32,by+32); x.closePath(); x.fill(); }
+    x.fillStyle='rgba(42,27,18,.5)'; for(let i=0;i<5;i++)for(let j=0;j<5;j++){ x.beginPath(); x.arc(i*32,j*32,2.3,0,7); x.fill(); }
+    const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(2,2); t.colorSpace=THREE.SRGBColorSpace; return t; }
+  function makeCalendarTex(){ const c=document.createElement('canvas'); c.width=c.height=128; const x=c.getContext('2d');
+    x.fillStyle='#FBF3E6'; x.fillRect(0,0,128,128); x.strokeStyle='#B5462A'; x.lineWidth=2;
+    for(let i=1;i<6;i++){ x.beginPath(); x.moveTo(14,14+i*17); x.lineTo(114,14+i*17); x.stroke(); x.beginPath(); x.moveTo(14+i*17,14); x.lineTo(14+i*17,116); x.stroke(); }
+    x.fillStyle='#A32C5C'; x.beginPath(); x.arc(48,66,7,0,7); x.fill();
+    const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t; }
+  function makeRadialTex(){ const c=document.createElement('canvas'); c.width=c.height=128; const x=c.getContext('2d');
+    const grd=x.createRadialGradient(64,64,4,64,64,64); grd.addColorStop(0,'rgba(50,25,8,.55)'); grd.addColorStop(1,'rgba(50,25,8,0)'); x.fillStyle=grd; x.fillRect(0,0,128,128); return new THREE.CanvasTexture(c); }
+
+  function buildFallback(){ host.classList.add('nowebgl'); render();
+    window.updateKit3D=function(l){ lang=l; render(); };
+    function render(){ const data=(window.KIT&&(window.KIT[lang]||window.KIT.de))||[]; const wrap=document.getElementById('kitFallback'); if(!wrap)return; wrap.innerHTML=''; data.forEach((it,i)=>{ const d=document.createElement('div'); d.className='fb'; d.innerHTML='<div class="ic">'+(i+1)+'</div><h4>'+it.t+'</h4><p>'+it.p+'</p>'; wrap.appendChild(d); }); } }
+})();
 </script>
 </body>
 </html>
