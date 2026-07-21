@@ -201,6 +201,25 @@ header.scrolled{background:rgba(251,243,230,.9);backdrop-filter:blur(14px);box-s
 .amb-body p{font-size:.95rem}
 .amb-note{font-size:.8rem;color:var(--ink-soft);margin-top:10px;font-style:italic}
 @media(max-width:720px){.amb-grid{grid-template-columns:1fr}}
+.amb-card{text-decoration:none;color:inherit}
+.amb-link{display:inline-block;margin-top:12px;color:var(--rust);font-weight:600;font-size:.9rem}
+.amb-card:hover .amb-link{text-decoration:underline}
+.worldmap{position:relative;max-width:720px;margin:46px auto 6px}
+.wm-svg{width:100%;height:auto;display:block}
+.wm-arc{fill:none;stroke:var(--gold);stroke-width:2.4;stroke-dasharray:5 9;stroke-linecap:round;opacity:.9;animation:wmflow 1.3s linear infinite}
+@keyframes wmflow{to{stroke-dashoffset:-28}}
+.wm-marker{cursor:pointer}
+.wm-marker[data-c="tz"]{cursor:default}
+.wm-dot{fill:var(--ochre)}
+.wm-marker.wm-dest .wm-dot{fill:var(--gold)}
+.wm-pulse{fill:var(--ochre);opacity:.5;transform-box:fill-box;transform-origin:center;animation:wmpulse 2.1s ease-out infinite}
+.wm-marker.wm-dest .wm-pulse{fill:var(--gold)}
+@keyframes wmpulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.6);opacity:0}100%{opacity:0}}
+.wm-marker:hover .wm-dot,.wm-marker:focus .wm-dot{fill:#fff;filter:url(#wmGlow)}
+.wm-marker:focus{outline:none}
+.wm-tip{position:absolute;transform:translate(-50%,-135%);background:var(--ink);color:var(--cream);font-size:.82rem;font-weight:500;padding:8px 13px;border-radius:10px;pointer-events:none;box-shadow:var(--shadow-sm);z-index:3;max-width:230px;text-align:center;line-height:1.35}
+.wm-tip::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:var(--ink)}
+.wm-hint{text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:8px}
 /* ---- 3D kit ---- */
 .kit3d{position:relative;height:300vh;margin-top:40px}
 .kit3d-sticky{position:sticky;top:0;height:100vh;overflow:hidden;border-radius:0}
@@ -641,8 +660,43 @@ footer a:hover{color:var(--gold)}
       <h2 data-i18n="amb_title">Our ambassadors</h2>
       <p class="lead" style="margin:16px auto 0" data-i18n="amb_lead">Ambassadors and partners in Germany and the USA raise funds and awareness for the Binti Project — directly benefiting girls in Tanzania. Full profiles are in progress.</p>
     </div>
+    <!-- interactive world map -->
+    <div class="worldmap reveal" id="worldmap">
+      <svg viewBox="0 0 1000 470" class="wm-svg" role="img" aria-label="Map: Germany, USA and Tanzania">
+        <defs>
+          <radialGradient id="wmGlobe" cx="42%" cy="34%" r="75%">
+            <stop offset="0%" stop-color="#24576c"/><stop offset="60%" stop-color="#173C4B"/><stop offset="100%" stop-color="#0f2a35"/>
+          </radialGradient>
+          <filter id="wmGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle cx="500" cy="235" r="205" fill="url(#wmGlobe)"/>
+        <g fill="none" stroke="rgba(240,180,41,.16)" stroke-width="1.4">
+          <ellipse cx="500" cy="235" rx="205" ry="205"/>
+          <ellipse cx="500" cy="235" rx="150" ry="205"/>
+          <ellipse cx="500" cy="235" rx="72" ry="205"/>
+          <line x1="295" y1="235" x2="705" y2="235"/>
+          <path d="M310,150 Q500,120 690,150"/><path d="M310,320 Q500,350 690,320"/>
+        </g>
+        <!-- support arcs to Tanzania -->
+        <path class="wm-arc" d="M405,205 Q470,150 560,320"/>
+        <path class="wm-arc" d="M572,168 Q640,240 560,320"/>
+        <!-- markers -->
+        <g class="wm-marker" data-c="usa" data-href="usa.html" data-x="40.5" data-y="43.6" tabindex="0" role="link" aria-label="USA">
+          <circle class="wm-pulse" cx="405" cy="205" r="9"/><circle class="wm-dot" cx="405" cy="205" r="6.5"/>
+        </g>
+        <g class="wm-marker" data-c="de" data-href="de.html" data-x="57.2" data-y="35.7" tabindex="0" role="link" aria-label="Deutschland">
+          <circle class="wm-pulse" cx="572" cy="168" r="9"/><circle class="wm-dot" cx="572" cy="168" r="6.5"/>
+        </g>
+        <g class="wm-marker wm-dest" data-c="tz" data-x="56" data-y="68" tabindex="0" aria-label="Tanzania">
+          <circle class="wm-pulse" cx="560" cy="320" r="11"/><circle class="wm-dot" cx="560" cy="320" r="7.5"/>
+        </g>
+      </svg>
+      <div class="wm-tip" id="wmTip" hidden></div>
+      <div class="wm-hint" data-i18n="wm_hint">Hover or tap a country</div>
+    </div>
+
     <div class="amb-grid">
-      <div class="amb-card reveal">
+      <a class="amb-card reveal" href="de.html">
         <div class="amb-photo">
           <img src="images/ambassador-de.jpg" alt="Verena Kahler, Botschafterin Deutschland, mit Bundespräsident Frank-Walter Steinmeier">
           <span class="amb-flag">🇩🇪 <span data-i18n="amb_de_country">Germany</span></span>
@@ -651,20 +705,21 @@ footer a:hover{color:var(--gold)}
           <h3>Verena Kahler</h3>
           <div class="amb-role"><span data-i18n="amb_role">Ambassador</span> · <span data-i18n="amb_de_since">since 2023</span></div>
           <p data-i18n="amb_de_text">Ambassador for the Binti Project in Germany, engaged since 2023 — raising awareness and support.</p>
-          <p class="amb-note" data-i18n="amb_de_note">Photo: with German Federal President Frank-Walter Steinmeier.</p>
+          <span class="amb-link" data-i18n="amb_more">Learn more →</span>
         </div>
-      </div>
-      <div class="amb-card reveal d1">
+      </a>
+      <a class="amb-card reveal d1" href="usa.html">
         <div class="amb-photo">
-          <div class="amb-ph" data-i18n="amb_usa_ph">Photo coming soon</div>
+          <img src="images/ambassador-usa.jpg" alt="Natalie Kuckenburg, Botschafterin USA">
           <span class="amb-flag">🇺🇸 <span data-i18n="amb_usa_country">USA</span></span>
         </div>
         <div class="amb-body">
           <h3>Natalie Kuckenburg</h3>
           <div class="amb-role"><span data-i18n="amb_role">Ambassador</span> · <span data-i18n="amb_usa_since">new in 2026</span></div>
           <p data-i18n="amb_usa_text">Ambassador for the Binti Project in the USA, newly on board in 2026 — raising awareness and support.</p>
+          <span class="amb-link" data-i18n="amb_more">Learn more →</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -854,7 +909,7 @@ const I18N = {
     ab_lead:"AfriCraft is a Tanzanian fair-trade social enterprise that turns discarded materials into handcrafted products. Its non-profit arm, AfriCraft NGO (registered as African Handcraft Organization, No. 00NGO/1307), runs social projects across Tanzania.",
     ab_body:"The Binti Project — reusable menstrual kits and education for schoolgirls — is the focus of this page and one of several AfriCraft NGO initiatives. Another, for example, is Mama Lishe, which raises menstrual-hygiene awareness among women in Dar es Salaam's informal sector. The kits are sewn by trained local seamstresses in Tanzanian villages.",
     ab_p1:"Binti Project · Menstrual health",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_title:"Our ambassadors",amb_lead:"Ambassadors and partners in Germany and the USA raise funds and awareness for the Binti Project — directly benefiting girls in Tanzania. Full profiles are in progress.",amb_role:"Ambassador",amb_de_country:"Germany",amb_de_since:"since 2023",amb_de_text:"Ambassador for the Binti Project in Germany, engaged since 2023 — raising awareness and support.",amb_de_note:"Photo: with German Federal President Frank-Walter Steinmeier.",amb_usa_ph:"Photo coming soon",amb_usa_country:"USA",amb_usa_since:"new in 2026",amb_usa_text:"Ambassador for the Binti Project in the USA, newly on board in 2026 — raising awareness and support.",
+    amb_title:"Our ambassadors",amb_lead:"Ambassadors and partners in Germany and the USA raise funds and awareness for the Binti Project — directly benefiting girls in Tanzania. Full profiles are in progress.",amb_role:"Ambassador",amb_de_country:"Germany",amb_de_since:"since 2023",amb_de_text:"Ambassador for the Binti Project in Germany, engaged since 2023 — raising awareness and support.",amb_de_note:"Photo: with German Federal President Frank-Walter Steinmeier.",amb_usa_ph:"Photo coming soon",amb_usa_country:"USA",amb_usa_since:"new in 2026",amb_usa_text:"Ambassador for the Binti Project in the USA, newly on board in 2026 — raising awareness and support.",amb_more:"Learn more →",wm_hint:"Hover or tap a country",wm_usa:"USA · Natalie Kuckenburg — click for more",wm_de:"Germany · Verena Kahler — click for more",wm_tz:"Tanzania · where the kits reach the girls",
     give_eyebrow:"Your donation at work",give_title:"Three ways your gift keeps girls learning",
     give1_t:"Fund a Binti Kit",give1_p:"Everything one girl needs to manage her period with dignity — reusable pads, waterproof pouches, soap, underwear and a guide — for up to two years.",
     give2_t:"Fund education",give2_p:"Awareness sessions for girls and boys that break the taboo around menstruation and turn stigma into everyday understanding.",
@@ -907,7 +962,7 @@ const I18N = {
     ab_lead:"AfriCraft ist ein tansanisches Fair-Trade-Sozialunternehmen, das aus Abfall handgefertigte Produkte macht. Sein gemeinnütziger Zweig, AfriCraft NGO (registriert als African Handcraft Organization, Nr. 00NGO/1307), betreibt Sozialprojekte in ganz Tansania.",
     ab_body:"Das Binti-Projekt – wiederverwendbare Menstruations-Sets und Aufklärung für Schulmädchen – steht im Mittelpunkt dieser Seite und ist eine von mehreren AfriCraft-NGO-Initiativen. Ein weiteres ist z. B. Mama Lishe, das bei Frauen im informellen Sektor in Dar es Salaam das Bewusstsein für Menstruationshygiene stärkt. Die Sets werden von ausgebildeten Näherinnen in tansanischen Dörfern genäht.",
     ab_p1:"Binti-Projekt · Menstruationsgesundheit",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_title:"Unsere Botschafterinnen",amb_lead:"Botschafterinnen und Partner in Deutschland und den USA sammeln Spenden und schaffen Aufmerksamkeit für das Binti-Projekt – direkt zugunsten der Mädchen in Tansania. Vollständige Profile folgen.",amb_role:"Botschafterin",amb_de_country:"Deutschland",amb_de_since:"seit 2023",amb_de_text:"Botschafterin für das Binti-Projekt in Deutschland, engagiert seit 2023 – schafft Aufmerksamkeit und Unterstützung.",amb_de_note:"Foto: mit Bundespräsident Frank-Walter Steinmeier.",amb_usa_ph:"Foto folgt",amb_usa_country:"USA",amb_usa_since:"neu 2026",amb_usa_text:"Botschafterin für das Binti-Projekt in den USA, neu dabei seit 2026 – schafft Aufmerksamkeit und Unterstützung.",
+    amb_title:"Unsere Botschafterinnen",amb_lead:"Botschafterinnen und Partner in Deutschland und den USA sammeln Spenden und schaffen Aufmerksamkeit für das Binti-Projekt – direkt zugunsten der Mädchen in Tansania. Vollständige Profile folgen.",amb_role:"Botschafterin",amb_de_country:"Deutschland",amb_de_since:"seit 2023",amb_de_text:"Botschafterin für das Binti-Projekt in Deutschland, engagiert seit 2023 – schafft Aufmerksamkeit und Unterstützung.",amb_de_note:"Foto: mit Bundespräsident Frank-Walter Steinmeier.",amb_usa_ph:"Foto folgt",amb_usa_country:"USA",amb_usa_since:"neu 2026",amb_usa_text:"Botschafterin für das Binti-Projekt in den USA, neu dabei seit 2026 – schafft Aufmerksamkeit und Unterstützung.",amb_more:"Mehr erfahren →",wm_hint:"Über ein Land fahren oder tippen",wm_usa:"USA · Natalie Kuckenburg — klicken für mehr",wm_de:"Deutschland · Verena Kahler — klicken für mehr",wm_tz:"Tansania · wo die Sets die Mädchen erreichen",
     give_eyebrow:"Deine Spende wirkt",give_title:"Drei Wege, wie deine Spende Mädchen im Unterricht hält",
     give1_t:"Ein Binti-Set finanzieren",give1_p:"Alles, was ein Mädchen braucht, um seine Periode mit Würde zu managen – wiederverwendbare Binden, wasserfeste Taschen, Seife, Unterhosen und eine Anleitung – bis zu zwei Jahre lang.",
     give2_t:"Aufklärung finanzieren",give2_p:"Aufklärungsveranstaltungen für Mädchen und Jungen, die das Tabu rund um Menstruation brechen und Stigma in Selbstverständlichkeit verwandeln.",
@@ -960,7 +1015,7 @@ const I18N = {
     ab_lead:"AfriCraft ni biashara ya kijamii ya haki ya Tanzania inayotengeneza bidhaa za mikono kutoka vitu vilivyotupwa. Tawi lake lisilo la faida, AfriCraft NGO (iliyosajiliwa kama African Handcraft Organization, Na. 00NGO/1307), huendesha miradi ya kijamii kote Tanzania.",
     ab_body:"Mradi wa Binti – vifurushi vya hedhi vinavyotumika tena na elimu kwa wasichana wa shule – ndio kiini cha ukurasa huu na ni mmoja wa miradi kadhaa ya AfriCraft NGO. Mwingine, kwa mfano, ni Mama Lishe, unaoongeza uelewa wa usafi wa hedhi kwa wanawake wa sekta isiyo rasmi jijini Dar es Salaam. Vifurushi hushonwa na washonaji wa ndani waliofunzwa katika vijiji vya Tanzania.",
     ab_p1:"Mradi wa Binti · Afya ya hedhi",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_title:"Mabalozi wetu",amb_lead:"Mabalozi na washirika nchini Ujerumani na Marekani hukusanya michango na kuongeza uelewa kwa Mradi wa Binti — kwa manufaa ya moja kwa moja ya wasichana nchini Tanzania. Wasifu kamili unaandaliwa.",amb_role:"Balozi",amb_de_country:"Ujerumani",amb_de_since:"tangu 2023",amb_de_text:"Balozi wa Mradi wa Binti nchini Ujerumani, amejihusisha tangu 2023 — akiongeza uelewa na msaada.",amb_de_note:"Picha: pamoja na Rais wa Ujerumani Frank-Walter Steinmeier.",amb_usa_ph:"Picha inakuja",amb_usa_country:"Marekani",amb_usa_since:"mpya 2026",amb_usa_text:"Balozi wa Mradi wa Binti nchini Marekani, mpya tangu 2026 — akiongeza uelewa na msaada.",
+    amb_title:"Mabalozi wetu",amb_lead:"Mabalozi na washirika nchini Ujerumani na Marekani hukusanya michango na kuongeza uelewa kwa Mradi wa Binti — kwa manufaa ya moja kwa moja ya wasichana nchini Tanzania. Wasifu kamili unaandaliwa.",amb_role:"Balozi",amb_de_country:"Ujerumani",amb_de_since:"tangu 2023",amb_de_text:"Balozi wa Mradi wa Binti nchini Ujerumani, amejihusisha tangu 2023 — akiongeza uelewa na msaada.",amb_de_note:"Picha: pamoja na Rais wa Ujerumani Frank-Walter Steinmeier.",amb_usa_ph:"Picha inakuja",amb_usa_country:"Marekani",amb_usa_since:"mpya 2026",amb_usa_text:"Balozi wa Mradi wa Binti nchini Marekani, mpya tangu 2026 — akiongeza uelewa na msaada.",amb_more:"Jifunze zaidi →",wm_hint:"Elea au gusa nchi",wm_usa:"Marekani · Natalie Kuckenburg — bofya kwa zaidi",wm_de:"Ujerumani · Verena Kahler — bofya kwa zaidi",wm_tz:"Tanzania · ambako vifurushi huwafikia wasichana",
     give_eyebrow:"Mchango wako kazini",give_title:"Njia tatu ambazo mchango wako huwaweka wasichana masomoni",
     give1_t:"Fadhili Kifurushi cha Binti",give1_p:"Kila kitu ambacho msichana anahitaji kusimamia hedhi yake kwa heshima — taulo za kutumika tena, mifuko isiyopitisha maji, sabuni, chupi na mwongozo — kwa hadi miaka miwili.",
     give2_t:"Fadhili elimu",give2_p:"Vipindi vya uelimishaji kwa wasichana na wavulana vinavyovunja mwiko kuhusu hedhi na kubadilisha unyanyapaa kuwa uelewa wa kila siku.",
@@ -1202,6 +1257,27 @@ if(matchMedia('(pointer:fine)').matches){
 
 /* Year */
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* Interactive world map */
+(function(){
+  const wm=document.getElementById('worldmap'); if(!wm) return;
+  const tip=document.getElementById('wmTip');
+  const keys={usa:'wm_usa',de:'wm_de',tz:'wm_tz'};
+  function txt(c){ const l=window.__lang||'de'; return (I18N[l]&&I18N[l][keys[c]])||''; }
+  wm.querySelectorAll('.wm-marker').forEach(m=>{
+    const c=m.dataset.c, href=m.dataset.href;
+    const show=()=>{ tip.textContent=txt(c); tip.style.left=m.dataset.x+'%'; tip.style.top=m.dataset.y+'%'; tip.hidden=false; };
+    const hide=()=>{ tip.hidden=true; };
+    m.addEventListener('mouseenter',show); m.addEventListener('mouseleave',hide);
+    m.addEventListener('focus',show); m.addEventListener('blur',hide);
+    if(href){
+      m.addEventListener('click',()=>location.href=href);
+      m.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; } });
+    }
+    m.addEventListener('touchstart',(e)=>{ if(tip.hidden||tip.dataset.c!==c){ e.preventDefault(); show(); tip.dataset.c=c; } else if(href){ location.href=href; } },{passive:false});
+  });
+  document.addEventListener('click',(e)=>{ if(!wm.contains(e.target)) tip.hidden=true; });
+})();
 
 /* Init */
 applyLang('de');

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Verena Kahler — Botschafterin Deutschland | Binti Project</title>
+<meta name="description" content="Verena Kahler ist seit 2023 Botschafterin für das Binti-Projekt in Deutschland — sie sammelt Spenden und schafft Aufmerksamkeit für Menstruationshygiene für Schulmädchen in Tansania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--rust:#B5462A;--rust-d:#8f3721;--ochre:#E9A33B;--gold:#F0B429;--indigo:#173C4B;--indigo-d:#0f2a35;--emerald:#2E7D5B;--cream:#FBF3E6;--sand:#F3E6CF;--clay:#EBD8BB;--line:#e2cfac;--ink:#2A1B12;--ink-soft:#6d5642;--white:#fff;--shadow:0 24px 60px -22px rgba(66,32,12,.32);--shadow-sm:0 10px 30px -14px rgba(66,32,12,.28);
+--kanga:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cpath d='M0 24 L12 24 L6 5 Z' fill='%23B5462A'/%3E%3Cpath d='M12 24 L24 24 L18 5 Z' fill='%23E9A33B'/%3E%3Cpath d='M24 24 L36 24 L30 5 Z' fill='%23173C4B'/%3E%3Cpath d='M36 24 L48 24 L42 5 Z' fill='%232E7D5B'/%3E%3Ccircle cx='6' cy='3' r='1.6' fill='%232A1B12'/%3E%3Ccircle cx='18' cy='3' r='1.6' fill='%232A1B12'/%3E%3Ccircle cx='30' cy='3' r='1.6' fill='%232A1B12'/%3E%3Ccircle cx='42' cy='3' r='1.6' fill='%232A1B12'/%3E%3C/svg%3E");}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.06;font-weight:600;letter-spacing:-.015em}
+h1{font-size:clamp(2.2rem,5vw,3.4rem)}
+h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:14px}
+a{color:var(--rust);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+.kanga-band{height:22px;background-image:var(--kanga);background-repeat:repeat-x;background-size:auto 22px}
+header{position:sticky;top:0;z-index:20;background:rgba(251,243,230,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces';font-weight:600;font-size:1.18rem;color:var(--ink)}
+.brand .mark{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--rust),var(--ochre),var(--emerald),var(--indigo),var(--rust));display:grid;place-items:center;flex:none}
+.brand .mark svg{width:60%}
+.brand small{display:block;font-family:'Space Grotesk';font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.back-top{font-weight:600;font-size:.92rem;color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:1rem;padding:13px 26px;border-radius:100px;border:2px solid transparent;cursor:pointer;transition:.22s}
+.btn-primary{background:var(--rust);color:#fff;box-shadow:0 14px 30px -12px rgba(181,70,42,.6)}
+.btn-primary:hover{background:var(--rust-d);transform:translateY(-2px)}
+.amb-hero{padding:clamp(40px,7vw,80px) 0}
+.two-col{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+.photo{border-radius:26px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:4/5;background:linear-gradient(160deg,var(--indigo),var(--indigo-d))}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.dev-badge{display:inline-block;background:var(--ink);color:var(--gold);font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:6px 15px;border-radius:100px;margin-bottom:14px}
+.flag{display:inline-block;margin-left:10px;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:5px 14px;font-weight:600;font-size:.82rem;color:var(--indigo)}
+.role{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);margin:10px 0 18px}
+.intro p{color:var(--ink-soft);font-size:1.08rem;max-width:52ch;margin-bottom:22px}
+.note{font-size:.85rem;font-style:italic;color:var(--ink-soft);margin-top:16px}
+.prose{padding:0 0 clamp(50px,8vw,90px);max-width:760px}
+.prose h2{margin-top:10px}
+.prose p{color:var(--ink-soft);margin-bottom:16px}
+.muted{font-size:.92rem;font-style:italic}
+.back{display:inline-block;margin-top:22px;font-weight:600}
+footer{background:var(--ink);color:rgba(255,255,255,.72);padding:34px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--gold)}
+@media(max-width:760px){.two-col{grid-template-columns:1fr;gap:28px}.photo{max-width:360px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <span class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round"><path d="M16 16a1 1 0 1 0 1.2 1 4 4 0 1 1-4-4 7 7 0 1 0 7 7 10 10 0 1 1-10-10"/></svg></span>
+      <span>Binti Project<small>by AfriCraft · Tanzania</small></span>
+    </a>
+    <div class="nav-right">
+      <a href="index.html#ambassadors" class="back-top">← Botschafterinnen</a>
+      <a href="https://www.gofundme.com/f/empower-tanzanian-girls-with-binti-project" target="_blank" rel="noopener" class="btn btn-primary">Spenden</a>
+    </div>
+  </div>
+</header>
+<div class="kanga-band"></div>
+
+<main>
+  <section class="amb-hero">
+    <div class="wrap two-col">
+      <div class="photo"><img src="images/ambassador-de.jpg" alt="Verena Kahler mit Bundespräsident Frank-Walter Steinmeier"></div>
+      <div class="intro">
+        <span class="dev-badge">In Entwicklung</span><span class="flag">🇩🇪 Deutschland</span>
+        <h1>Verena Kahler</h1>
+        <div class="role">Botschafterin · seit 2023</div>
+        <p>Verena Kahler ist seit 2023 Botschafterin für das Binti-Projekt in Deutschland. Sie sammelt Spenden und schafft Aufmerksamkeit für Menstruationshygiene für Schulmädchen in Tansania.</p>
+        <a class="btn btn-primary" href="https://www.gofundme.com/f/empower-tanzanian-girls-with-binti-project" target="_blank" rel="noopener">Jetzt spenden</a>
+        <p class="note">Foto: mit Bundespräsident Frank-Walter Steinmeier.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="prose wrap">
+    <h2>Über das Engagement in Deutschland</h2>
+    <p>Botschafterinnen und Partner in Deutschland sammeln Spenden und schaffen Aufmerksamkeit für das Binti-Projekt – was direkt den Mädchen in Tansania zugutekommt: wiederverwendbare Menstruations-Sets und Aufklärung, damit sie mit Würde zur Schule gehen können.</p>
+    <p class="muted">Diese Seite ist in Entwicklung – ein ausführliches Profil folgt.</p>
+    <a class="back" href="index.html#ambassadors">← Zurück zu den Botschafterinnen</a>
+  </section>
+</main>
+
+<div class="kanga-band"></div>
+<footer>
+  <div class="wrap">
+    <span>© <span id="y"></span> AfriCraft · Binti Project</span>
+    <span><a href="index.html">Zur Hauptseite</a></span>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
