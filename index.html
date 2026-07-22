@@ -207,7 +207,7 @@ header.scrolled{background:rgba(251,243,230,.9);backdrop-filter:blur(14px);box-s
 .amb-card{text-decoration:none;color:inherit}
 .amb-link{display:inline-block;margin-top:12px;color:var(--rust);font-weight:600;font-size:.9rem}
 .amb-card:hover .amb-link{text-decoration:underline}
-.worldmap{position:relative;max-width:860px;margin:46px auto 6px;background:linear-gradient(160deg,var(--indigo),var(--indigo-d));border:1px solid var(--indigo-d);border-radius:24px;padding:22px 20px 14px;box-shadow:var(--shadow)}
+.worldmap{position:relative;max-width:680px;margin:40px auto 6px;background:linear-gradient(160deg,var(--indigo),var(--indigo-d));border:1px solid var(--indigo-d);border-radius:24px;padding:20px 18px 12px;box-shadow:var(--shadow)}
 .wm-svg{width:100%;height:auto;display:block}
 .wm-land{fill:#f2e6cd;stroke:#cbb488;stroke-width:.4;opacity:.92}
 .wm-hi{fill:var(--ochre);stroke:var(--rust-d);stroke-width:.5}
@@ -224,7 +224,9 @@ header.scrolled{background:rgba(251,243,230,.9);backdrop-filter:blur(14px);box-s
 .amb-mini{display:block;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit;transition:.28s}
 .amb-mini:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--ochre)}
 .amb-mini .amb-flag{position:static;background:var(--sand);border:1px solid var(--line);border-radius:100px;padding:4px 13px;font-weight:600;font-size:.8rem;color:var(--indigo)}
-.amb-mini h3{margin:14px 0 4px}
+.amb-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.amb-thumb{width:60px;height:60px;border-radius:15px;object-fit:cover;flex:none;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.amb-mini h3{margin:0 0 4px}
 .amb-mini p{font-size:.95rem;margin-top:4px}
 .bracelet-note{display:flex;gap:18px;align-items:flex-start;max-width:820px;margin:26px auto 0;background:var(--sand);border:1px solid var(--line);border-radius:20px;padding:22px 26px}
 .bracelet-note .br-ic{flex:none;width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,var(--rust),var(--ochre));display:grid;place-items:center;color:#fff}
@@ -452,7 +454,7 @@ footer a:hover{color:var(--gold)}
       </div>
       <div class="hero-chips reveal in d3">
         <div class="hero-chip"><span class="n">2<span style="font-size:1rem" data-i18n="u_years"> yrs</span></span><span class="t" data-i18n="hero_chip1">one kit lasts</span></div>
-        <div class="hero-chip"><span class="n">5</span><span class="t" data-i18n="hero_chip2">school days saved every month</span></div>
+        <div class="hero-chip"><span class="n"><span style="font-size:1rem;font-weight:600" data-i18n="hero_chip2_pre">up to </span>5</span><span class="t" data-i18n="hero_chip2">school days saved every month</span></div>
         <div class="hero-chip"><span class="n">5</span><span class="t" data-i18n="hero_chip3">reusable pads in every kit</span></div>
       </div>
     </div>
@@ -586,11 +588,7 @@ footer a:hover{color:var(--gold)}
     <div class="reveal">
       <span class="eyebrow" data-i18n="imp_eyebrow">Our impact</span>
       <h2 data-i18n="imp_title">Measurable change, girl by girl</h2>
-      <p class="lead" style="margin-top:20px" data-i18n="imp_lead">Without safe menstrual products and sanitation, girls in Tanzania miss up to 5 school days every month.</p>
-      <p style="margin-top:16px" data-i18n="imp_body">By distributing Binti Kits alongside awareness sessions, AfriCraft helps break down these structural barriers and keep girls in the education system for the long term.</p>
-      <div class="ml-nums">
-        <div><div class="n" data-i18n="imp_n1_num">up to 5</div><div class="t" data-i18n="imp_n1">school days a girl misses every month without support</div></div>
-      </div>
+      <p class="lead" style="margin-top:20px" data-i18n="imp_lead">Every Binti Kit we distribute cuts missed lessons and keeps girls in class for the long term.</p>
     </div>
     <div class="reveal d1">
       <div class="factcard">
@@ -622,7 +620,7 @@ footer a:hover{color:var(--gold)}
     <div style="text-align:center;max-width:720px;margin:0 auto" class="reveal">
       <span class="eyebrow" style="justify-content:center" data-i18n="amb_eyebrow">Ambassadors</span>
       <h2 data-i18n="amb_title">Unsere Botschafterinnen</h2>
-      <p class="lead" style="margin:16px auto 0" data-i18n="amb_lead">Botschafterinnen in Deutschland und den USA sammeln Spenden und schaffen Aufmerksamkeit fuer das Binti-Projekt. Was direkt den Maedchen in Tansania zugutekommt.</p>
+      <p class="lead" style="margin:16px auto 0" data-i18n="amb_lead">Ambassadors in Germany and the USA raise funds and awareness for the Binti Project, directly benefiting girls in Tanzania.</p>
     </div>
 
     <div class="worldmap reveal" id="worldmap">
@@ -644,25 +642,31 @@ footer a:hover{color:var(--gold)}
     <div class="bracelet-note reveal">
       <div class="br-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="4" r="1.4" fill="currentColor"/><circle cx="20" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="20" r="1.4" fill="currentColor"/><circle cx="4" cy="12" r="1.4" fill="currentColor"/></svg></div>
       <div>
-        <h3 data-i18n="brace_title">Ein Baendchen fuer Bildung</h3>
-        <p data-i18n="brace_text">Verena verkauft die Baendchen in Deutschland, Natalie in den USA. Jedes verkaufte Baendchen finanziert Binti-Sets fuer Schulmaedchen in Tansania. Fotos der Baendchen folgen.</p>
+        <h3 data-i18n="brace_title">A bracelet for education</h3>
+        <p data-i18n="brace_text">Verena sells the bracelets in Germany, Natalie in the USA. Every bracelet sold funds Binti Kits for schoolgirls in Tanzania. Photos of the bracelets follow.</p>
       </div>
     </div>
 
     <div class="amb-grid">
       <a class="amb-mini reveal" href="de.html">
-        <span class="amb-flag">&#127465;&#127466; <span data-i18n="amb_de_country">Deutschland</span></span>
+        <div class="amb-top">
+          <img class="amb-thumb" src="images/ambassador-de.jpg" alt="Verena Kahler" style="object-position:center 22%">
+          <span class="amb-flag">&#127465;&#127466; <span data-i18n="amb_de_country">Deutschland</span></span>
+        </div>
         <h3>Verena Kahler</h3>
-        <div class="amb-role"><span data-i18n="amb_role">Botschafterin</span> &middot; <span data-i18n="amb_de_since">seit 2023</span></div>
-        <p data-i18n="amb_de_text">Botschafterin in Deutschland, engagiert seit 2023. Sie sammelt Spenden und traegt das Binti-Projekt in die deutsche Oeffentlichkeit.</p>
-        <span class="amb-link" data-i18n="amb_more">Mehr erfahren &rarr;</span>
+        <div class="amb-role"><span data-i18n="amb_role">Ambassador</span> &middot; <span data-i18n="amb_de_since">since 2023</span></div>
+        <p data-i18n="amb_de_text">Brings the Binti Project to the German public and raises funds.</p>
+        <span class="amb-link" data-i18n="amb_more">Learn more &rarr;</span>
       </a>
       <a class="amb-mini reveal d1" href="usa.html">
-        <span class="amb-flag">&#127482;&#127480; <span data-i18n="amb_usa_country">USA</span></span>
+        <div class="amb-top">
+          <img class="amb-thumb" src="images/ambassador-usa.jpg" alt="Natalie Kuckenburg" style="object-position:center 18%">
+          <span class="amb-flag">&#127482;&#127480; <span data-i18n="amb_usa_country">USA</span></span>
+        </div>
         <h3>Natalie Kuckenburg</h3>
-        <div class="amb-role"><span data-i18n="amb_role">Botschafterin</span> &middot; <span data-i18n="amb_usa_since">neu 2026</span></div>
-        <p data-i18n="amb_usa_text">Botschafterin in den USA, neu dabei seit 2026. Sie hat die GoFundMe-Kampagne gestartet und gewinnt Unterstuetzer in den Vereinigten Staaten.</p>
-        <span class="amb-link" data-i18n="amb_more">Mehr erfahren &rarr;</span>
+        <div class="amb-role"><span data-i18n="amb_role">Ambassador</span> &middot; <span data-i18n="amb_usa_since">new 2026</span></div>
+        <p data-i18n="amb_usa_text">Started the GoFundMe campaign and wins supporters across the USA.</p>
+        <span class="amb-link" data-i18n="amb_more">Learn more &rarr;</span>
       </a>
     </div>
   </div>
@@ -871,7 +875,7 @@ const I18N = {
     hero_title:'Helping girls go to school, <span class="hl">with dignity.</span>',
     hero_lead:"Many girls from low-income families in Tanzania miss school every month simply because they lack menstrual products. The Binti Project changes that, with a reusable hygiene kit and education that lets girls manage their period safely, confidently and sustainably.",
     hero_cta1:"Donate now",hero_cta2:"See what's in a kit",
-    hero_chip1:"one kit lasts",hero_chip2:"school days saved every month",hero_chip3:"reusable pads in every kit",u_years:" yrs",
+    hero_chip1:"one kit lasts",hero_chip2_pre:"up to ",hero_chip2:"school days saved every month",hero_chip3:"reusable pads in every kit",u_years:" yrs",
     hero_float1:"reusable & sustainable",hero_float2:"education breaks the taboo",
     scroll:"Scroll",
     ph_hero:"Photo placeholder, add a picture of the Binti Kit or the girls here",
@@ -887,19 +891,18 @@ const I18N = {
     ch3_b:"Nothing available.",ch3_t:"In rural areas especially, affordable hygiene products are almost impossible to find.",
     ch4_b:"Disposables don't work.",ch4_t:"Single-use pads are no sustainable solution for poor families, and harm the environment when not disposed of properly.",
     kit_eyebrow:"Build a Binti Kit",kit_title:"See what goes into one kit, piece by piece",
-    kit_lead:"Scroll down or tap the button. Each part is added with the reason it matters, seven pieces make one complete Binti Kit.",
+    kit_lead:"Scroll down or tap the button. Seven pieces make one complete Binti Kit.",
     kit_added:"pieces added",kit_next:"Add next piece +",kit_reset:"Unpack",kit3d_hint:"Scroll to explore",dev_badge:"In development",kit3d_title:"The kit in real 3D",kit3d_lead:"An experimental 3D view of the components, scroll to turn each piece. Work in progress.",
     kit_done_t:"A complete Binti Kit!",kit_done_p:"Seven simple parts, one girl kept in school, safely and with dignity.",
     kit_cta_lead:"One kit, sewn by local seamstresses, keeps a girl learning for up to two years.",kit_cta_btn:"Fund a Binti Kit",kit_realcap:"A real Binti Kit with all its components, sewn in Tanzania.",
     imp_eyebrow:"Our impact",imp_title:"Measurable change, girl by girl",
-    imp_lead:"Without safe menstrual products and sanitation, girls in Tanzania miss up to 5 school days every month.",
-    imp_body:"By distributing Binti Kits alongside awareness sessions, AfriCraft helps break down these structural barriers and keep girls in the education system for the long term.",
-    imp_n1_num:"up to 5",imp_n1:"school days a girl misses every month without support",imp_n2:"of school toilets lack pad disposal",imp_n3:"of schools lack adequate water/washing",imp_photocap:"A Binti Kit handed to a schoolgirl, dignity and school, month after month.",impc_eyebrow:"AfriCraft NGO · impact so far",impc_title:"Real numbers, real reach",impc_body:"Across its menstrual-hygiene work in Tanzania, AfriCraft NGO has reached thousands of girls and women.",impc_r1:"Binti Kits distributed to schoolgirls",impc_r2:"schoolboys educated on menstrual hygiene",impc_r3:"women trained (menstrual-hygiene entrepreneurship)",
+    imp_lead:"Every Binti Kit we distribute cuts missed lessons and keeps girls in class for the long term.",imp_photocap:"A Binti Kit handed to a schoolgirl, dignity and school, month after month.",
+    impc_eyebrow:"AfriCraft NGO · impact so far",impc_title:"Real numbers, real reach",impc_body:"Across its menstrual-hygiene work in Tanzania, AfriCraft NGO has reached thousands of girls and women.",impc_r1:"Binti Kits distributed to schoolgirls",impc_r2:"schoolboys educated on menstrual hygiene",impc_r3:"women trained (menstrual-hygiene entrepreneurship)",
     ab_eyebrow:"About AfriCraft NGO",ab_title:"Crafting change, empowering lives",
     ab_lead:"AfriCraft is a Tanzanian fair-trade social enterprise that turns discarded materials into handcrafted products. Its non-profit arm, AfriCraft NGO (registered as African Handcraft Organization, No. 00NGO/1307), runs social projects across Tanzania.",
     ab_body:"The Binti Project, reusable menstrual kits and education for schoolgirls, is the focus of this page and one of several AfriCraft NGO initiatives. The kits are sewn by trained local seamstresses in Tanzanian villages.",
     ab_p1:"Binti Project · Menstrual health",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_eyebrow:"Ambassadors",amb_title:"Our ambassadors",amb_lead:"Ambassadors in Germany and the USA raise funds and awareness for the Binti Project, which directly benefits girls in Tanzania.",amb_role:"Ambassador",amb_de_country:"Germany",amb_de_since:"since 2023",amb_de_text:"Ambassador in Germany, engaged since 2023. She raises funds and brings the Binti Project to the German public.",amb_de_note:"Photo: with German Federal President Frank-Walter Steinmeier.",amb_usa_ph:"Photo coming soon",amb_usa_country:"USA",amb_usa_since:"new in 2026",amb_usa_text:"Ambassador in the USA, on board since 2026. She started the GoFundMe campaign and wins supporters across the United States.",amb_more:"Learn more →",brace_title:"A bracelet for education",brace_text:"Verena sells the bracelets in Germany, Natalie in the USA. Every bracelet sold funds Binti Kits for schoolgirls in Tanzania. Photos of the bracelets follow.",wm_hint:"Hover or tap a country",wm_usa:"USA · Natalie Kuckenburg, click for more",wm_de:"Germany · Verena Kahler, click for more",wm_tz:"Tanzania · where the kits reach the girls",
+    amb_eyebrow:"Ambassadors",amb_title:"Our ambassadors",amb_lead:"Ambassadors in Germany and the USA raise funds and awareness for the Binti Project, which directly benefits girls in Tanzania.",amb_role:"Ambassador",amb_de_country:"Germany",amb_de_since:"since 2023",amb_de_text:"Brings the Binti Project to the German public and raises funds.",amb_de_note:"Photo: with German Federal President Frank-Walter Steinmeier.",amb_usa_ph:"Photo coming soon",amb_usa_country:"USA",amb_usa_since:"new in 2026",amb_usa_text:"Started the GoFundMe campaign and wins supporters across the USA.",amb_more:"Learn more →",brace_title:"A bracelet for education",brace_text:"Verena sells the bracelets in Germany, Natalie in the USA. Every bracelet sold funds Binti Kits for schoolgirls in Tanzania. Photos of the bracelets follow.",wm_hint:"Hover or tap a country",wm_usa:"USA · Natalie Kuckenburg, click for more",wm_de:"Germany · Verena Kahler, click for more",wm_tz:"Tanzania · where the kits reach the girls",
     give_eyebrow:"Your donation at work",give_title:"Three ways your gift keeps girls learning",
     give1_t:"Fund a Binti Kit",give1_p:"Everything one girl needs to manage her period with dignity, reusable pads, waterproof pouches, soap, underwear and a guide, for up to two years.",
     give2_t:"Fund education",give2_p:"Awareness sessions for girls and boys that break the taboo around menstruation and turn stigma into everyday understanding.",
@@ -921,7 +924,7 @@ const I18N = {
     hero_title:'Mädchen die Schule ermöglichen, <span class="hl">mit Würde.</span>',
     hero_lead:"Viele Mädchen aus einkommensschwachen Familien in Tansania verpassen jeden Monat Schultage, weil ihnen Menstruationsprodukte fehlen. Das Binti-Projekt ändert das, mit einem wiederverwendbaren Hygiene-Set und Aufklärung, damit Mädchen ihre Periode sicher, selbstbewusst und nachhaltig managen können.",
     hero_cta1:"Jetzt spenden",hero_cta2:"Was ist im Set?",
-    hero_chip1:"hält ein Set",hero_chip2:"gerettete Schultage pro Monat",hero_chip3:"Binden pro Set",u_years:" Jahre",
+    hero_chip1:"hält ein Set",hero_chip2_pre:"bis zu ",hero_chip2:"gerettete Schultage pro Monat",hero_chip3:"Binden pro Set",u_years:" Jahre",
     hero_float1:"wiederverwendbar & nachhaltig",hero_float2:"Aufklärung bricht das Tabu",
     scroll:"Scrollen",
     ph_hero:"Foto-Platzhalter, hier ein Bild des Binti-Sets oder der Mädchen einfügen",
@@ -937,19 +940,18 @@ const I18N = {
     ch3_b:"Nichts verfügbar.",ch3_t:"Besonders in ländlichen Gebieten sind erschwingliche Hygieneprodukte kaum erhältlich.",
     ch4_b:"Einweg funktioniert nicht.",ch4_t:"Einweg-Binden sind für arme Familien keine nachhaltige Lösung, und belasten die Umwelt, wenn sie nicht fachgerecht entsorgt werden.",
     kit_eyebrow:"Ein Binti-Set zusammenstellen",kit_title:"Sieh, was in ein Set gehört, Stück für Stück",
-    kit_lead:"Scrolle nach unten oder tippe auf den Button. Jedes Teil kommt mit der Erklärung, warum es zählt, sieben Teile ergeben ein vollständiges Binti-Set.",
+    kit_lead:"Scrolle nach unten oder tippe auf den Button. Sieben Teile ergeben ein vollständiges Binti-Set.",
     kit_added:"Teile hinzugefügt",kit_next:"Nächstes Teil hinzufügen +",kit_reset:"Auspacken",kit3d_hint:"Zum Erkunden scrollen",dev_badge:"In Entwicklung",kit3d_title:"Das Kit in echtem 3D",kit3d_lead:"Eine experimentelle 3D-Ansicht der Bestandteile, scrolle, um jedes Teil zu drehen. In Arbeit.",
     kit_done_t:"Ein vollständiges Binti-Set!",kit_done_p:"Sieben einfache Teile, ein Mädchen bleibt in der Schule, sicher und mit Würde.",
     kit_cta_lead:"Ein Set, von lokalen Näherinnen gefertigt, hält ein Mädchen bis zu zwei Jahre im Unterricht.",kit_cta_btn:"Ein Binti-Set finanzieren",kit_realcap:"Ein echtes Binti-Kit mit allen Bestandteilen, genäht in Tansania.",
     imp_eyebrow:"Unsere Wirkung",imp_title:"Messbare Veränderung, Mädchen für Mädchen",
-    imp_lead:"Ohne sichere Menstruationsprodukte und sanitäre Einrichtungen verpassen Mädchen in Tansania bis zu 5 Schultage im Monat.",
-    imp_body:"Durch die Verteilung von Binti-Sets samt Aufklärung hilft AfriCraft, diese strukturellen Barrieren abzubauen und Mädchen langfristig im Bildungssystem zu halten.",
-    imp_n1_num:"bis zu 5",imp_n1:"Schultage verpasst ein Mädchen jeden Monat ohne Unterstützung",imp_n2:"der Schultoiletten ohne Binden-Entsorgung",imp_n3:"der Schulen ohne ausreichende Waschmöglichkeiten",imp_photocap:"Ein Binti-Set wird an eine Schülerin übergeben, Würde und Schule, Monat für Monat.",impc_eyebrow:"AfriCraft NGO · Wirkung bisher",impc_title:"Echte Zahlen, echte Reichweite",impc_body:"In ihrer Arbeit für Menstruationshygiene in Tansania hat AfriCraft NGO Tausende Mädchen und Frauen erreicht.",impc_r1:"Binti-Sets an Schulmädchen verteilt",impc_r2:"Schuljungen zu Menstruationshygiene aufgeklärt",impc_r3:"Frauen ausgebildet (Menstruationshygiene-Unternehmertum)",
+    imp_lead:"Jedes verteilte Binti-Set senkt die Fehltage und hält Mädchen langfristig im Unterricht.",imp_photocap:"Ein Binti-Set, übergeben an ein Schulmädchen, Würde und Schule, Monat für Monat.",
+    impc_eyebrow:"AfriCraft NGO · Wirkung bisher",impc_title:"Echte Zahlen, echte Reichweite",impc_body:"In ihrer Arbeit zur Menstruationshygiene in Tansania hat die AfriCraft NGO Tausende Mädchen und Frauen erreicht.",impc_r1:"Binti-Sets an Schulmädchen verteilt",impc_r2:"Schuljungen zu Menstruationshygiene aufgeklärt",impc_r3:"Frauen ausgebildet (Menstruationshygiene-Unternehmertum)",
     ab_eyebrow:"Über AfriCraft NGO",ab_title:"Wandel gestalten, Leben stärken",
     ab_lead:"AfriCraft ist ein tansanisches Fair-Trade-Sozialunternehmen, das aus Abfall handgefertigte Produkte macht. Sein gemeinnütziger Zweig, AfriCraft NGO (registriert als African Handcraft Organization, Nr. 00NGO/1307), betreibt Sozialprojekte in ganz Tansania.",
     ab_body:"Das Binti-Projekt, wiederverwendbare Menstruations-Sets und Aufklärung für Schulmädchen, steht im Mittelpunkt dieser Seite und ist eine von mehreren AfriCraft-NGO-Initiativen. Die Sets werden von ausgebildeten Näherinnen in tansanischen Dörfern genäht.",
     ab_p1:"Binti-Projekt · Menstruationsgesundheit",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_eyebrow:"Botschafterinnen",amb_title:"Unsere Botschafterinnen",amb_lead:"Botschafterinnen in Deutschland und den USA sammeln Spenden und schaffen Aufmerksamkeit für das Binti-Projekt, was direkt den Mädchen in Tansania zugutekommt.",amb_role:"Botschafterin",amb_de_country:"Deutschland",amb_de_since:"seit 2023",amb_de_text:"Botschafterin in Deutschland, engagiert seit 2023. Sie sammelt Spenden und trägt das Binti-Projekt in die deutsche Öffentlichkeit.",amb_de_note:"Foto: mit Bundespräsident Frank-Walter Steinmeier.",amb_usa_ph:"Foto folgt",amb_usa_country:"USA",amb_usa_since:"neu 2026",amb_usa_text:"Botschafterin in den USA, dabei seit 2026. Sie hat die GoFundMe-Kampagne gestartet und gewinnt Unterstützer in den Vereinigten Staaten.",amb_more:"Mehr erfahren →",brace_title:"Ein Bändchen für Bildung",brace_text:"Verena verkauft die Bändchen in Deutschland, Natalie in den USA. Jedes verkaufte Bändchen finanziert Binti-Sets für Schulmädchen in Tansania. Fotos der Bändchen folgen.",wm_hint:"Über ein Land fahren oder tippen",wm_usa:"USA · Natalie Kuckenburg, klicken für mehr",wm_de:"Deutschland · Verena Kahler, klicken für mehr",wm_tz:"Tansania · wo die Sets die Mädchen erreichen",
+    amb_eyebrow:"Botschafterinnen",amb_title:"Unsere Botschafterinnen",amb_lead:"Botschafterinnen in Deutschland und den USA sammeln Spenden und schaffen Aufmerksamkeit für das Binti-Projekt, was direkt den Mädchen in Tansania zugutekommt.",amb_role:"Botschafterin",amb_de_country:"Deutschland",amb_de_since:"seit 2023",amb_de_text:"Trägt das Binti-Projekt in die deutsche Öffentlichkeit und sammelt Spenden.",amb_de_note:"Foto: mit Bundespräsident Frank-Walter Steinmeier.",amb_usa_ph:"Foto folgt",amb_usa_country:"USA",amb_usa_since:"neu 2026",amb_usa_text:"Hat die GoFundMe-Kampagne gestartet und gewinnt Unterstützer in den USA.",amb_more:"Mehr erfahren →",brace_title:"Ein Bändchen für Bildung",brace_text:"Verena verkauft die Bändchen in Deutschland, Natalie in den USA. Jedes verkaufte Bändchen finanziert Binti-Sets für Schulmädchen in Tansania. Fotos der Bändchen folgen.",wm_hint:"Über ein Land fahren oder tippen",wm_usa:"USA · Natalie Kuckenburg, klicken für mehr",wm_de:"Deutschland · Verena Kahler, klicken für mehr",wm_tz:"Tansania · wo die Sets die Mädchen erreichen",
     give_eyebrow:"Deine Spende wirkt",give_title:"Drei Wege, wie deine Spende Mädchen im Unterricht hält",
     give1_t:"Ein Binti-Set finanzieren",give1_p:"Alles, was ein Mädchen braucht, um seine Periode mit Würde zu managen, wiederverwendbare Binden, wasserfeste Taschen, Seife, Unterhosen und eine Anleitung, bis zu zwei Jahre lang.",
     give2_t:"Aufklärung finanzieren",give2_p:"Aufklärungsveranstaltungen für Mädchen und Jungen, die das Tabu rund um Menstruation brechen und Stigma in Selbstverständlichkeit verwandeln.",
@@ -971,7 +973,7 @@ const I18N = {
     hero_title:'Kuwawezesha wasichana kwenda shule, <span class="hl">kwa heshima.</span>',
     hero_lead:"Wasichana wengi kutoka familia za kipato cha chini nchini Tanzania hukosa masomo kila mwezi kwa sababu tu hawana bidhaa za hedhi. Mradi wa Binti unabadilisha hilo, kwa kifurushi cha usafi kinachotumika tena na elimu inayowawezesha wasichana kusimamia hedhi yao kwa usalama, kujiamini na kwa njia endelevu.",
     hero_cta1:"Changia sasa",hero_cta2:"Ona kilichomo kwenye kifurushi",
-    hero_chip1:"kifurushi kimoja hudumu",hero_chip2:"siku za shule zinazookolewa kila mwezi",hero_chip3:"pedi za kutumika tena kila kifurushi",u_years:" miaka",
+    hero_chip1:"kifurushi kimoja hudumu",hero_chip2_pre:"hadi ",hero_chip2:"siku za shule zinazookolewa kila mwezi",hero_chip3:"pedi za kutumika tena kila kifurushi",u_years:" miaka",
     hero_float1:"ya kutumika tena & endelevu",hero_float2:"elimu huvunja mwiko",
     scroll:"Teremsha",
     ph_hero:"Nafasi ya picha, weka picha ya Kifurushi cha Binti au wasichana hapa",
@@ -987,19 +989,18 @@ const I18N = {
     ch3_b:"Hakuna kinachopatikana.",ch3_t:"Hasa vijijini, bidhaa za usafi za bei nafuu ni vigumu sana kupatikana.",
     ch4_b:"Za matumizi moja hazifai.",ch4_t:"Taulo za matumizi moja si suluhisho endelevu kwa familia maskini, na huharibu mazingira zisipotupwa ipasavyo.",
     kit_eyebrow:"Tengeneza Kifurushi cha Binti",kit_title:"Ona kinachoingia kwenye kifurushi kimoja, kipande kwa kipande",
-    kit_lead:"Teremsha chini au gusa kitufe. Kila kipande huongezwa pamoja na sababu ya umuhimu wake, vipande saba hutengeneza Kifurushi kamili cha Binti.",
+    kit_lead:"Teremsha chini au gusa kitufe. Vipande saba hutengeneza Kifurushi kamili cha Binti.",
     kit_added:"vipande vimeongezwa",kit_next:"Ongeza kipande +",kit_reset:"Fungua",kit3d_hint:"Teremsha kuchunguza",dev_badge:"Inaandaliwa",kit3d_title:"Kifurushi katika 3D halisi",kit3d_lead:"Mwonekano wa majaribio wa 3D wa vipengele, teremsha kuzungusha kila kipande. Kazi inaendelea.",
     kit_done_t:"Kifurushi kamili cha Binti!",kit_done_p:"Vipande saba rahisi, msichana mmoja anabaki shuleni, kwa usalama na heshima.",
     kit_cta_lead:"Kifurushi kimoja, kilichoshonwa na washonaji wa ndani, humweka msichana masomoni hadi miaka miwili.",kit_cta_btn:"Fadhili Kifurushi cha Binti",kit_realcap:"Kifurushi halisi cha Binti chenye vitu vyote, kilichoshonwa Tanzania.",
     imp_eyebrow:"Athari yetu",imp_title:"Mabadiliko yanayopimika, msichana kwa msichana",
-    imp_lead:"Bila bidhaa salama za hedhi na vyoo bora, wasichana nchini Tanzania hukosa hadi siku 5 za shule kila mwezi.",
-    imp_body:"Kwa kugawa Vifurushi vya Binti pamoja na vipindi vya uelimishaji, AfriCraft husaidia kuvunja vizuizi hivi vya kimuundo na kuwaweka wasichana kwenye mfumo wa elimu kwa muda mrefu.",
-    imp_n1_num:"hadi 5",imp_n1:"siku za shule ambazo msichana hukosa kila mwezi bila msaada",imp_n2:"ya vyoo vya shule havina mahali pa kutupa taulo",imp_n3:"ya shule hazina maji/vyombo vya kunawa vya kutosha",imp_photocap:"Kifurushi cha Binti kikikabidhiwa kwa mwanafunzi, heshima na shule, mwezi baada ya mwezi.",impc_eyebrow:"AfriCraft NGO · athari hadi sasa",impc_title:"Namba halisi, matokeo halisi",impc_body:"Katika kazi yake ya usafi wa hedhi nchini Tanzania, AfriCraft NGO imewafikia maelfu ya wasichana na wanawake.",impc_r1:"Vifurushi vya Binti vilivyogawiwa kwa wasichana",impc_r2:"wavulana wa shule waliofunzwa usafi wa hedhi",impc_r3:"wanawake waliofunzwa (ujasiriamali wa usafi wa hedhi)",
+    imp_lead:"Kila Kifurushi cha Binti tunachogawa hupunguza masomo yanayokoswa na kuwaweka wasichana shuleni kwa muda mrefu.",imp_photocap:"Kifurushi cha Binti kikikabidhiwa msichana wa shule, heshima na shule, mwezi baada ya mwezi.",
+    impc_eyebrow:"AfriCraft NGO · athari hadi sasa",impc_title:"Namba halisi, ufikiaji halisi",impc_body:"Katika kazi yake ya usafi wa hedhi nchini Tanzania, AfriCraft NGO imewafikia maelfu ya wasichana na wanawake.",impc_r1:"Vifurushi vya Binti vilivyogawiwa kwa wasichana wa shule",impc_r2:"wavulana wa shule walioelimishwa kuhusu usafi wa hedhi",impc_r3:"wanawake waliofunzwa (ujasiriamali wa usafi wa hedhi)",
     ab_eyebrow:"Kuhusu AfriCraft NGO",ab_title:"Kuunda mabadiliko, kuwezesha maisha",
     ab_lead:"AfriCraft ni biashara ya kijamii ya haki ya Tanzania inayotengeneza bidhaa za mikono kutoka vitu vilivyotupwa. Tawi lake lisilo la faida, AfriCraft NGO (iliyosajiliwa kama African Handcraft Organization, Na. 00NGO/1307), huendesha miradi ya kijamii kote Tanzania.",
     ab_body:"Mradi wa Binti, vifurushi vya hedhi vinavyotumika tena na elimu kwa wasichana wa shule, ndio kiini cha ukurasa huu na ni mmoja wa miradi kadhaa ya AfriCraft NGO. Vifurushi hushonwa na washonaji wa ndani waliofunzwa katika vijiji vya Tanzania.",
     ab_p1:"Mradi wa Binti · Afya ya hedhi",ab_p2:"Green School · AfriBike",ab_p3:"Coco Beach Waste Centre",
-    amb_eyebrow:"Mabalozi",amb_title:"Mabalozi wetu",amb_lead:"Mabalozi nchini Ujerumani na Marekani hukusanya michango na kuongeza uelewa kwa Mradi wa Binti, jambo linalowanufaisha moja kwa moja wasichana nchini Tanzania.",amb_role:"Balozi",amb_de_country:"Ujerumani",amb_de_since:"tangu 2023",amb_de_text:"Balozi nchini Ujerumani, amejihusisha tangu 2023. Hukusanya michango na kueneza Mradi wa Binti nchini Ujerumani.",amb_de_note:"Picha: pamoja na Rais wa Ujerumani Frank-Walter Steinmeier.",amb_usa_ph:"Picha inakuja",amb_usa_country:"Marekani",amb_usa_since:"mpya 2026",amb_usa_text:"Balozi nchini Marekani, tangu 2026. Alianzisha kampeni ya GoFundMe na kupata wafadhili nchini Marekani.",amb_more:"Jifunze zaidi →",brace_title:"Bendi kwa elimu",brace_text:"Verena huuza bendi nchini Ujerumani, Natalie nchini Marekani. Kila bendi inayouzwa hufadhili Vifurushi vya Binti kwa wasichana wa shule nchini Tanzania. Picha za bendi zitafuata.",wm_hint:"Elea au gusa nchi",wm_usa:"Marekani · Natalie Kuckenburg, bofya kwa zaidi",wm_de:"Ujerumani · Verena Kahler, bofya kwa zaidi",wm_tz:"Tanzania · ambako vifurushi huwafikia wasichana",
+    amb_eyebrow:"Mabalozi",amb_title:"Mabalozi wetu",amb_lead:"Mabalozi nchini Ujerumani na Marekani hukusanya michango na kuongeza uelewa kwa Mradi wa Binti, jambo linalowanufaisha moja kwa moja wasichana nchini Tanzania.",amb_role:"Balozi",amb_de_country:"Ujerumani",amb_de_since:"tangu 2023",amb_de_text:"Hueneza Mradi wa Binti nchini Ujerumani na kukusanya michango.",amb_de_note:"Picha: pamoja na Rais wa Ujerumani Frank-Walter Steinmeier.",amb_usa_ph:"Picha inakuja",amb_usa_country:"Marekani",amb_usa_since:"mpya 2026",amb_usa_text:"Alianzisha kampeni ya GoFundMe na kupata wafadhili nchini Marekani.",amb_more:"Jifunze zaidi →",brace_title:"Bendi kwa elimu",brace_text:"Verena huuza bendi nchini Ujerumani, Natalie nchini Marekani. Kila bendi inayouzwa hufadhili Vifurushi vya Binti kwa wasichana wa shule nchini Tanzania. Picha za bendi zitafuata.",wm_hint:"Elea au gusa nchi",wm_usa:"Marekani · Natalie Kuckenburg, bofya kwa zaidi",wm_de:"Ujerumani · Verena Kahler, bofya kwa zaidi",wm_tz:"Tanzania · ambako vifurushi huwafikia wasichana",
     give_eyebrow:"Mchango wako kazini",give_title:"Njia tatu ambazo mchango wako huwaweka wasichana masomoni",
     give1_t:"Fadhili Kifurushi cha Binti",give1_p:"Kila kitu ambacho msichana anahitaji kusimamia hedhi yake kwa heshima, taulo za kutumika tena, mifuko isiyopitisha maji, sabuni, chupi na mwongozo, kwa hadi miaka miwili.",
     give2_t:"Fadhili elimu",give2_p:"Vipindi vya uelimishaji kwa wasichana na wavulana vinavyovunja mwiko kuhusu hedhi na kubadilisha unyanyapaa kuwa uelewa wa kila siku.",
@@ -1132,7 +1133,8 @@ function applyLang(lang){
 /* expose kit data to the 3D module */
 window.KIT=KIT;
 
-/* interactive Binti-kit builder (7 pieces): add/remove, reset, no auto-reveal */
+/* interactive Binti-kit builder (7 pieces): scroll auto-reveal (late trigger) + manual add/remove/reset */
+let kitStepObserver=null;
 function renderKit(lang){
   const wrap=document.getElementById('kitSteps'); if(!wrap) return; wrap.innerHTML='';
   KIT[lang].forEach((item,i)=>{
@@ -1144,6 +1146,14 @@ function renderKit(lang){
     wrap.appendChild(step);
   });
   applyKitState();
+  // Auto-reveal each piece once its step scrolls into the lower-middle of the screen.
+  // rootMargin keeps a thin trigger band ~60% down the viewport, so pieces appear
+  // only after the reader has actually scrolled to that step (never prematurely).
+  if(kitStepObserver) kitStepObserver.disconnect();
+  kitStepObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ const n=+e.target.dataset.step; if(n>kitRevealed) setKit(n); } });
+  },{rootMargin:'-58% 0px -34% 0px',threshold:0});
+  document.querySelectorAll('.kit-step').forEach(s=>kitStepObserver.observe(s));
 }
 function applyKitState(){
   for(let i=1;i<=7;i++){
