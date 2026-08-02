@@ -1213,27 +1213,27 @@ const TIERS=[{eur:15,t:1},{eur:30,t:2},{eur:45,t:3},{eur:150,t:10}];
 let donSel=0;
 
 const DON={
-  en:{title:"Your donation, in real terms",lead:"Pick an amount and see straight away how many Binti tickets it becomes.",
-      ticket1:"Binti ticket",ticketN:"Binti tickets",
-      whatT:"What is a Binti ticket?",whatP:"One Binti ticket stands for one complete Binti kit: five reusable pads, pouches, soap, two panties and an illustrated guide. Usable for two years, for one girl.",
+  en:{title:"Your donation, in real terms",lead:"Pick an amount and see straight away how many Binti kits it becomes.",
+      kit1:"Binti kit",kitN:"Binti kits",
+      whatT:"What is in a Binti kit?",whatP:"One complete kit: five reusable pads, a large drawstring bag, a clutch, two waterproof pouches, antibacterial soap, two panties and an illustrated guide. Usable for two years, for one girl.",
       payT:"How to donate",gfm:"Donate via GoFundMe",paypal:"Donate with PayPal",bankT:"Bank transfer",
       holder:"Account holder",iban:"IBAN",bic:"BIC",purpose:"Reference",copy:"Copy",copied:"Copied",
       soon:"The PayPal account will be added shortly.",note:"Any amount helps, the tiers are only a guide.",bankBtn:"Bank transfer",back:"Back",bankLead:"Transfer the amount yourself using the details below.",bankname:"Bank",amount:"Amount",bankNote:"Please always add the reference so we can allocate your donation.",bankSoon:"The bank details will be added shortly. Until then, GoFundMe is the fastest way to donate."},
-  de:{title:"Deine Spende, ganz konkret",lead:"Wähle einen Betrag und sieh sofort, wie viele Binti-Tickets daraus werden.",
-      ticket1:"Binti-Ticket",ticketN:"Binti-Tickets",
-      whatT:"Was ist ein Binti-Ticket?",whatP:"Ein Binti-Ticket steht für ein vollständiges Binti-Set: fünf wiederverwendbare Binden, Taschen, Seife, zwei Höschen und eine bebilderte Anleitung. Zwei Jahre verwendbar, für ein Mädchen.",
+  de:{title:"Deine Spende, ganz konkret",lead:"Wähle einen Betrag und sieh sofort, wie viele Binti-Sets daraus werden.",
+      kit1:"Binti-Set",kitN:"Binti-Sets",
+      whatT:"Was ist in einem Binti-Set?",whatP:"Ein vollständiges Set: fünf wiederverwendbare Binden, eine große Stofftasche, eine kleine Clutch, zwei wasserfeste Taschen, antibakterielle Seife, zwei Höschen und eine bebilderte Anleitung. Zwei Jahre verwendbar, für ein Mädchen.",
       payT:"So kannst du spenden",gfm:"Über GoFundMe spenden",paypal:"Mit PayPal spenden",bankT:"Überweisung",
       holder:"Kontoinhaber",iban:"IBAN",bic:"BIC",purpose:"Verwendungszweck",copy:"Kopieren",copied:"Kopiert",
       soon:"Das PayPal-Konto wird in Kürze ergänzt.",note:"Jeder Betrag hilft, die Stufen sind nur eine Orientierung.",bankBtn:"Überweisung",back:"Zurück",bankLead:"Überweise den Betrag selbst mit den folgenden Daten.",bankname:"Bank",amount:"Betrag",bankNote:"Bitte immer den Verwendungszweck angeben, damit wir deine Spende zuordnen können.",bankSoon:"Die Bankverbindung wird in Kürze ergänzt. Bis dahin geht es am schnellsten über GoFundMe."},
-  sw:{title:"Mchango wako, kwa uwazi",lead:"Chagua kiasi na uone mara moja ni tiketi ngapi za Binti zinazopatikana.",
-      ticket1:"tiketi ya Binti",ticketN:"tiketi za Binti",
-      whatT:"Tiketi ya Binti ni nini?",whatP:"Tiketi moja ya Binti ni kifurushi kimoja kamili cha Binti: pedi tano za kutumika tena, mifuko, sabuni, chupi mbili na mwongozo wa picha. Hutumika kwa miaka miwili, kwa msichana mmoja.",
+  sw:{title:"Mchango wako, kwa uwazi",lead:"Chagua kiasi na uone mara moja ni vifurushi vingapi vya Binti vinavyopatikana.",
+      kit1:"kifurushi cha Binti",kitN:"vifurushi vya Binti",
+      whatT:"Kuna nini ndani ya kifurushi cha Binti?",whatP:"Kifurushi kimoja kamili: pedi tano za kutumika tena, mfuko mkubwa wa kitambaa, pochi ndogo, mifuko miwili isiyopitisha maji, sabuni ya kuua vijidudu, chupi mbili na mwongozo wa picha. Hutumika kwa miaka miwili, kwa msichana mmoja.",
       payT:"Jinsi ya kuchangia",gfm:"Changia kupitia GoFundMe",paypal:"Changia kwa PayPal",bankT:"Uhamisho wa benki",
       holder:"Mmiliki wa akaunti",iban:"IBAN",bic:"BIC",purpose:"Maelezo",copy:"Nakili",copied:"Imenakiliwa",
       soon:"Akaunti ya PayPal itaongezwa hivi karibuni.",note:"Kiasi chochote husaidia.",bankBtn:"Uhamisho wa benki",back:"Rudi",bankLead:"Tuma kiasi mwenyewe kwa kutumia taarifa zifuatazo.",bankname:"Benki",amount:"Kiasi",bankNote:"Tafadhali weka maelezo kila wakati ili tuweze kutambua mchango wako.",bankSoon:"Taarifa za benki zitaongezwa hivi karibuni. Kwa sasa GoFundMe ndiyo njia ya haraka zaidi."}
 };
 
-function donPurpose(tier){ return 'Binti-Ticket x '+tier.t; }
+function donPurpose(tier){ return 'Binti-Set x '+tier.t; }
 
 /* Step 1: choose amount + payment method */
 function donPayHTML(){
@@ -1275,7 +1275,7 @@ function renderDonate(){
   const d=DON[currentLang]||DON.de;
   const tiers=TIERS.map((x,i)=>'<button type="button" class="don-tier'+(i===donSel?' sel':'')+'" data-tier="'+i+'">'
     +'<span class="eur">'+x.eur+' €</span>'
-    +'<span class="tix"><span class="don-beads">'+'<i></i>'.repeat(x.t)+'</span><b>'+x.t+'</b> '+(x.t===1?d.ticket1:d.ticketN)+'</span></button>').join('');
+    +'<span class="tix"><span class="don-beads">'+'<i></i>'.repeat(x.t)+'</span><b>'+x.t+'</b> '+(x.t===1?d.kit1:d.kitN)+'</span></button>').join('');
   modalContent.className='modal-inner don-modal';
   modalContent.innerHTML='<h2>'+d.title+'</h2><p class="dm-lead">'+d.lead+'</p>'
     +'<div class="don-tiers">'+tiers+'</div>'
