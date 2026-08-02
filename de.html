@@ -60,6 +60,22 @@ header{position:sticky;top:0;z-index:20;background:rgba(251,243,230,.92);backdro
 .feed-item b{display:block;font-family:'Fraunces'}
 .feed-item span{font-size:.9rem;color:var(--ink-soft)}
 .back{display:inline-block;margin-top:8px;font-weight:600}
+.newsbar{background:var(--indigo);color:rgba(255,255,255,.9)}
+.newsbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding-top:14px;padding-bottom:14px;font-size:.95rem}
+.newsbar b{font-family:'Fraunces';font-size:1.06rem;color:#fff}
+.newsbar .tag{background:var(--gold);color:var(--ink);font-weight:700;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;padding:5px 12px;border-radius:100px;flex:none}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:26px}
+.gal figure{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.gal figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.gal figure.wide img{aspect-ratio:4/3}
+.gal figcaption{padding:12px 15px 16px;font-size:.87rem;color:var(--ink-soft);line-height:1.45}
+.ev{padding:clamp(34px,5vw,54px) 0;border-top:1px solid var(--line)}
+.ev:first-child{border-top:0;padding-top:0}
+.ev .kicker{font-size:.76rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--rust);margin-bottom:6px}
+.ev p{color:var(--ink-soft);max-width:70ch;margin-bottom:14px}
+.factbox{background:var(--white);border:1px solid var(--line);border-left:5px solid var(--emerald);border-radius:14px;padding:18px 22px;max-width:70ch;margin-top:30px;font-size:.95rem;color:var(--ink-soft)}
+.factbox b{color:var(--ink);font-family:'Fraunces';font-size:1.02rem;display:block;margin-bottom:4px}
+.quote{font-family:'Fraunces';font-style:italic;font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--indigo);border-left:4px solid var(--ochre);padding-left:18px;margin:6px 0 20px;max-width:60ch;line-height:1.35}
 footer{background:var(--ink);color:rgba(255,255,255,.72);padding:34px 0;font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 footer a{color:var(--gold)}
@@ -81,17 +97,24 @@ footer a{color:var(--gold)}
 </header>
 <div class="beadband"></div>
 
+<div class="newsbar">
+  <div class="wrap">
+    <span class="tag">Nächster Termin</span>
+    <b>26.&nbsp;August 2026, 18&nbsp;Uhr &middot; &bdquo;Ein Bändchen für Bildung&ldquo;</b>
+    <span>Paul-Gerhardt-Saal &middot; Infoabend mit kulturellen &bdquo;Shots&ldquo;</span>
+  </div>
+</div>
+
 <main>
   <section class="amb-hero">
     <div class="wrap two-col">
-      <div class="photo"><img src="images/ambassador-de.jpg" alt="Verena Kahler mit Bundespräsident Frank-Walter Steinmeier"></div>
+      <div class="photo"><img src="images/verena-portrait.jpg" alt="Verena Kahler, Botschafterin des Binti-Projekts in Deutschland"></div>
       <div class="intro">
         <span class="flag">&#127465;&#127466; Deutschland</span>
         <h1>Verena Kahler</h1>
         <div class="role">Botschafterin &middot; seit 2023</div>
-        <p>Verena Kahler ist seit 2023 Botschafterin für das Binti-Projekt in Deutschland. Sie sammelt Spenden und trägt das Projekt in die deutsche Öffentlichkeit.</p>
+        <p>Verena Kahler ist seit 2023 Botschafterin für das Binti-Projekt in Deutschland. Sie sammelt Spenden, organisiert Lesungen und Charity-Abende und trägt das Projekt in die deutsche Öffentlichkeit &ndash; von der eigenen Gartenparty bis zum Gespräch mit dem Bundespräsidenten.</p>
         <a class="btn btn-primary" href="https://www.gofundme.com/f/empower-tanzanian-girls-with-binti-project" target="_blank" rel="noopener">Jetzt spenden</a>
-        <p class="note">Foto: mit Bundespräsident Frank-Walter Steinmeier.</p>
       </div>
     </div>
   </section>
@@ -99,24 +122,82 @@ footer a{color:var(--gold)}
   <section class="band-section">
     <div class="wrap band-inner">
       <div class="slogan">Ein Bändchen für Bildung</div>
-      <p>Verena verkauft in Deutschland handgefertigte Bändchen. Jedes verkaufte Bändchen finanziert Binti-Sets für Schulmädchen in Tansania. Fotos der Bändchen folgen in Kürze.</p>
-      <div class="ph-row">
-        <div class="ph-card">Foto folgt</div>
-        <div class="ph-card">Foto folgt</div>
-        <div class="ph-card">Foto folgt</div>
+      <p>In Daressalam fertigt Peter unsere Binti-Bändchen von Hand &ndash; aus edlen Sandelholzsamen, Perle für Perle. In Deutschland wird jedes Bändchen zu einem Beitrag für ein Binti-Set: Ein Bändchen am Handgelenk, ein Mädchen mehr, das während seiner Periode zur Schule gehen kann.</p>
+      <div class="gal">
+        <figure><img src="images/baendchen-herstellung.jpg" alt="Peter fertigt in Daressalam Binti-Bändchen aus Sandelholzsamen"><figcaption>Peter fertigt unsere Binti-Bändchen in Daressalam von Hand &ndash; aus edlen Sandelholzsamen.</figcaption></figure>
+        <figure><img src="images/baendchen-lieferung.jpg" alt="Frisch gelieferte Binti-Bändchen neben einem Karibu-Schild"><figcaption>Ahsante sana &ndash; eine frische Lieferung Binti-Bändchen aus Tansania.</figcaption></figure>
+        <figure><img src="images/baendchen-haende.jpg" alt="Hände verschiedener Hautfarben, alle mit einem roten Binti-Bändchen"><figcaption>Ein Bändchen verbindet &ndash; über Länder und Kontinente hinweg.</figcaption></figure>
+        <figure><img src="images/baendchen-herz.jpg" alt="Binti-Bändchen als Herz auf einem Steg am Wasser gelegt"><figcaption>Jedes Bändchen steht für ein Stück Bildung.</figcaption></figure>
       </div>
     </div>
   </section>
 
   <section class="prose">
     <div class="wrap">
-      <h2>Aktuelles aus Deutschland</h2>
-      <p class="muted">Hier teilt Verena bald Neuigkeiten, Aktionen und Einblicke. Der Feed folgt.</p>
-      <div class="feed">
-        <div class="feed-item"><div class="fi-ph"></div><div><b>Beitrag folgt</b><span>Aktuelles von Verena erscheint hier.</span></div></div>
-        <div class="feed-item"><div class="fi-ph"></div><div><b>Beitrag folgt</b><span>Aktuelles von Verena erscheint hier.</span></div></div>
-        <div class="feed-item"><div class="fi-ph"></div><div><b>Beitrag folgt</b><span>Aktuelles von Verena erscheint hier.</span></div></div>
+      <div class="ev">
+        <div class="kicker">Fest der Produzentenallianz &middot; Berlin</div>
+        <h2>Binti beim Bundespräsidenten</h2>
+        <div class="quote">&bdquo;Ich hatte die phantastische Möglichkeit, unserem Bundespräsidenten Frank-Walter Steinmeier mein Herzensprojekt &sbquo;Binti Tanzania&lsquo; vorzustellen.&ldquo;</div>
+        <p>Ich danke von Herzen für das interessierte und sehr sympathische Gespräch.</p>
+        <div class="gal">
+          <figure><img src="images/verena-steinmeier-3.jpg" alt="Verena Kahler mit Bundespräsident Frank-Walter Steinmeier"><figcaption>Mit Bundespräsident Frank-Walter Steinmeier beim Fest der Produzentenallianz in Berlin.</figcaption></figure>
+          <figure><img src="images/verena-steinmeier-1.jpg" alt="Bundespräsident Steinmeier betrachtet das Binti-Bändchen an seinem Handgelenk"><figcaption>Das Binti-Bändchen am Handgelenk des Bundespräsidenten.</figcaption></figure>
+          <figure><img src="images/verena-steinmeier-2.jpg" alt="Verena Kahler zeigt dem Bundespräsidenten das Binti-Bändchen"><figcaption>Ein Bändchen erklärt das Projekt schneller als jede Broschüre.</figcaption></figure>
+          <figure><img src="images/verena-steinmeier-4.jpg" alt="Verena Kahler im Gespräch mit dem Bundespräsidenten"><figcaption>Ein interessiertes und sehr sympathisches Gespräch.</figcaption></figure>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section class="prose" style="padding-top:0">
+    <div class="wrap">
+      <h2>Events</h2>
+      <p class="muted">Was in Deutschland für Binti passiert &ndash; der Reihe nach.</p>
+
+      <div class="ev">
+        <div class="kicker">August 2024</div>
+        <h2>Charity-Lesung im Fliegenden Theater</h2>
+        <p>Unsere Charity-Lesung im Fliegenden Theater &ndash; mit der wundervollen Edelgard Hansen und &bdquo;Eric der Hund&ldquo;.</p>
+        <div class="gal">
+          <figure class="wide"><img src="images/verena-lesung-1.jpg" alt="Edelgard Hansen und Verena Kahler proben für die Charity-Lesung"><figcaption>Probe für die Lesung: Edelgard Hansen und Verena Kahler &ndash; mit &bdquo;Eric der Hund&ldquo;.</figcaption></figure>
+          <figure class="wide"><img src="images/verena-lesung-2.jpg" alt="Edelgard Hansen und Verena Kahler bei der Probe zur Charity-Lesung"><figcaption>Aus den Proben zur Charity-Lesung.</figcaption></figure>
+          <figure class="wide"><img src="images/verena-lesung-3.jpg" alt="Edelgard Hansen und Verena Kahler mit aufgeschlagenen Büchern"><figcaption>Gelesen wurde zugunsten von Binti Tanzania.</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="kicker">August 2025</div>
+        <h2>Binti Charity Party</h2>
+        <p>Im August 2025 durfte ich zu meiner &bdquo;Binti Charity Party&ldquo; viele tolle Menschen bei mir begrüßen: Freund*innen, Kolleg*innen, &bdquo;alte&ldquo; Bekannte &ndash; und viele neue Kontakte.</p>
+        <p>Kulturelle Highlights waren großartige Künstler*innen, die alle ohne Gage auftraten: Una Gonschor, Robby Edwards, Susanna Bartilla, Hugo Fernandez und Charles Wynn. Dazu stellten namhafte bildende Künstler*innen ihre Werke für eine Charity-Versteigerung zur Verfügung, unter anderem René Cassio Scholz, Ute Manoloudakis, Jasmin Sylla-Bugarin und Juliane Kufferath &ndash; sowie handsignierte CDs von &bdquo;SpongeBob&ldquo; alias Santiago Ziesmer.</p>
+        <p>Ein großes Dankeschön an Dietmar Wunder für seine charmante Moderation, an Joshua Wunder für die super Simultanübersetzung der Rede von AfriCraft-CEO Kelvin Nicholas und &ndash; introducing &ndash; an Nisha Wunder für ihre eindrucksvolle Interpretation von Whitney-Houston-Songs.</p>
+        <div class="gal">
+          <figure><img src="images/event-dietmar-wunder-1.jpg" alt="Dietmar Wunder moderiert die Binti Charity Party"><figcaption>Dietmar Wunder &ndash; Schauspieler und die deutsche Stimme von Daniel Craig alias James Bond &ndash; moderierte charmant durch den Abend.</figcaption></figure>
+          <figure><img src="images/event-dietmar-wunder-2.jpg" alt="Dietmar Wunder mit Mikrofon im Garten"><figcaption>Alle Künstler*innen traten ohne Gage zugunsten &bdquo;Binti Tanzania&ldquo; auf.</figcaption></figure>
+          <figure><img src="images/event-musik-saengerin.jpg" alt="Susanna Bartilla singt, begleitet von Hugo Fernandez an der Gitarre"><figcaption>Susanna Bartilla, die bekannte deutsch-französische Jazzsängerin, begleitet von Hugo Fernandez.</figcaption></figure>
+          <figure><img src="images/event-musik-saxophon.jpg" alt="Una Gonschor mit Robby Edwards am Saxophon"><figcaption>Una Gonschor &ndash; Sängerin, Schriftstellerin und Gründerin des Vereins Namu Art for Life &ndash; mit Robby Edwards am Saxophon.</figcaption></figure>
+          <figure><img src="images/event-charles-wynn.jpg" alt="Charles Wynn singt bei der Binti Charity Party"><figcaption>Charles Wynn, Sänger und Tänzer, berührte und begeisterte mit seiner einfühlsamen Soulstimme.</figcaption></figure>
+          <figure><img src="images/verena-event-gaeste-1.jpg" alt="Meinolf Kuper, Verena Kahler und Kelvin Nicholas"><figcaption>Meinolf Kuper, Gründer von AfriCraft, und CEO Kelvin Nicholas mit mir in der Mitte &ndash; glücklich über den gelungenen Tag.</figcaption></figure>
+          <figure><img src="images/verena-event-gaeste-2.jpg" alt="Verena Kahler mit Claudia und Denis Bergemann"><figcaption>Mit Claudia und Denis Bergemann von der Agentur Sprecherdatei.</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="kicker">Oktober / November 2025</div>
+        <h2>Synchronstar-Spendenmarathon</h2>
+        <p>Ein Spendenmarathon mit bekannten Synchronstimmen zugunsten des Binti-Projekts.</p>
+        <div class="ph-row">
+          <div class="ph-card">Foto folgt</div>
+          <div class="ph-card">Foto folgt</div>
+          <div class="ph-card">Foto folgt</div>
+        </div>
+      </div>
+
+      <div class="factbox">
+        <b>AfriCraft e.&nbsp;V.</b>
+        Am 10.&nbsp;April 2025 beim Amtsgericht Charlottenburg in das Vereinsregister eingetragen. Die Anerkennung der Gemeinnützigkeit wird derzeit geprüft.
+      </div>
+
       <a class="back" href="index.html#ambassadors">&larr; Zurück zu den Botschafterinnen</a>
     </div>
   </section>
