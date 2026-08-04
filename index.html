@@ -1206,7 +1206,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
    ============================================================ */
 const PAY = {
   gofundme:"https://www.gofundme.com/f/empower-tanzanian-girls-with-binti-project",
-  paypal:"",                                   /* z.B. "https://paypal.me/africraft" */
+  paypal:"https://www.paypal.com/donate/?business=verein%40africraft.de&currency_code=EUR&item_name=Binti+Project",   /* PayPal-Konto: verein@africraft.de */
   bank:{ holder:"AfriCraft e.V.", iban:"BE10 9054 7533 8504", bic:"TRWIBEB1XXX", bankname:"WISE Bank (Belgien)" }   /* belgisches Konto */
 };
 const TIERS=[{eur:15,t:1},{eur:30,t:2},{eur:45,t:3},{eur:150,t:10}];
@@ -1235,13 +1235,20 @@ const DON={
 
 function donPurpose(tier){ return 'Binti-Set x '+tier.t; }
 
+/* paypal.me-Kurzlink braucht /15EUR, ein PayPal-Spendenlink braucht &amount=15 */
+function paypalURL(tier){
+  const u=PAY.paypal;
+  if(/paypal\.me|\/paypalme\//i.test(u)) return u.replace(/\/+$/,'')+'/'+tier.eur+'EUR';
+  return u+(u.indexOf('?')>-1?'&':'?')+'amount='+tier.eur;
+}
+
 /* Step 1: choose amount + payment method */
 function donPayHTML(){
   const d=DON[currentLang]||DON.de, tier=TIERS[donSel];
   let h='<div class="don-pay">';
   h+='<a class="btn btn-primary btn-lg" target="_blank" rel="noopener" href="'+PAY.gofundme+'">'+d.gfm+' · '+tier.eur+' €</a>';
   if(PAY.paypal){
-    h+='<a class="btn btn-paypal btn-lg" target="_blank" rel="noopener" href="'+PAY.paypal.replace(/\/+$/,'')+'/'+tier.eur+'EUR">'+d.paypal+' · '+tier.eur+' €</a>';
+    h+='<a class="btn btn-paypal btn-lg" target="_blank" rel="noopener" href="'+paypalURL(tier)+'">'+d.paypal+' · '+tier.eur+' €</a>';
   }
   h+='<button type="button" class="btn btn-ghost btn-lg" id="donBankBtn">'+d.bankBtn+'</button>';
   h+='</div>';
